@@ -21,14 +21,14 @@ namespace MyGame.QuestSystem
         private List<string> prerequisiteQuestIds;                                  //선행 퀘스트 ID 목록 
 
         //퀘스트 초기화 생성자 
-        public Quest(string id, string title, string description, QuestType type, int level)
+        public Quest(string id, string title, string description, QuestType type, int day)
         {
             Id = id;
             Title = title;
             Description = description;
             Type = type;
             Status = QuestStatus.NotStarted;
-           // Level = level;
+            Day = day;
 
             this.conditions = new List<IQuestCondition>();
             this.rewards = new List<IQuestReward>();
