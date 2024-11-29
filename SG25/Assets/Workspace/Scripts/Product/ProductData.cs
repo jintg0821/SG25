@@ -8,14 +8,11 @@ public class ProductData : ScriptableObject
     {
         Beverages,
         Snacks,
-        DairyProducts,
-        FrozenFoods,
-        PersonalCare,
-        Miscellaneous
+        FrozenFoods
     }
 
     public PRODUCTTYPE productType;
-    public int Index;
+    public int ID;
     public string Name;
     public Sprite image;
     public GameObject ProductModel;

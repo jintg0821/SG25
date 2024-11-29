@@ -11,16 +11,18 @@ public class UIManager : MonoBehaviour
     public GameObject shopPanel;
     public GameObject cartPanel;
     public bool isPanelOn;
-
-    public Image productBoxImage;
-    public TextMeshProUGUI productBoxName;
-    public TextMeshProUGUI productBoxCount;
-    public GameObject productBoxPanel;
+    public TextMeshProUGUI timeText; // UI에 현재 게임 시간을 표시하는 텍스트
 
     void Start()
     {
         moneyText.text = GameManager.Instance.playerMoney.ToString();
         playerCtrl = FindObjectOfType<CenterCameraRaycast>();
+    }
+
+    private void Update()
+    {
+        // UI 업데이트 (게임 시간 출력)
+        timeText.text = string.Format("{0:00}:{1:00}", GameManager.Instance.hours % 24, GameManager.Instance.minutes);
     }
 
     public void IncreaseMoneyText(int amount)
@@ -35,30 +37,15 @@ public class UIManager : MonoBehaviour
         moneyText.text = GameManager.Instance.playerMoney.ToString();
     }
 
-    public void OnProductBoxPanel()
+    public void ToggleShopPanel()
     {
-        productBoxPanel.SetActive(true);
-    }
-    public void CloseProductBoxPanel()
-    {
-        productBoxPanel.SetActive(false);
-    }
-
-    public void OnShopPanel()
-    {
-        bool isPanelActive = shopPanel.activeInHierarchy;
-        isPanelOn = isPanelActive;
-        shopPanel.SetActive(!isPanelActive);
+        shopPanel.SetActive(!shopPanel.activeSelf);
+        playerCtrl.SetCursorState(shopPanel.activeSelf);
     }
 
     public void ClosePanel()
     {
         cartPanel.SetActive(false);
-    }
-
-    public void OnProductBoxInfo(string ProductName, int ProductCount)
-    {
-        productBoxName.text = ProductName;
-        productBoxCount.text = ProductCount.ToString();
+        playerCtrl.SetCursorState(false);
     }
 }

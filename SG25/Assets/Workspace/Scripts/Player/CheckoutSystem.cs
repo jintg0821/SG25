@@ -14,11 +14,6 @@ public class CheckoutSystem : MonoBehaviour
 
     public UIManager UIManager;
 
-    void Start()
-    {
-        UIManager = FindObjectOfType<UIManager>();
-    }
-
     public void SelectedProduct(GameObject productObj)
     {
         productObj = counterProduct[counterProduct.Count - 1];

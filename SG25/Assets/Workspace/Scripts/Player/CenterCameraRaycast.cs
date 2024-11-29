@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class CenterCameraRaycast : MonoBehaviour
 {
@@ -12,19 +11,24 @@ public class CenterCameraRaycast : MonoBehaviour
     public GameObject playerHand;
     public ProductBox productBox;
     public ProductBox lastBox;
-    private CheckoutSystem checkoutSystem;
-    public CustomerCtrl customer;
+    public CheckoutSystem checkoutSystem;
     public UIManager uiManager;
-
-    void Start()
-    {
-        checkoutSystem = GetComponent<CheckoutSystem>();
-        uiManager = FindObjectOfType<UIManager>();
-        customer = FindObjectOfType<CustomerCtrl>();
-    }
     void Update()
     {
         PerformRaycast();
+    }
+
+    public void SetCursorState(bool isVisible)
+    {
+        Cursor.visible = isVisible;
+        if (!isVisible)
+        {
+            Cursor.lockState = CursorLockMode.Locked; // 커서를 화면 중앙에 고정
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None; // 커서를 화면에 보이게 하고 자유롭게 움직임
+        }
     }
 
     void PerformRaycast()
@@ -82,9 +86,6 @@ public class CenterCameraRaycast : MonoBehaviour
                         productBox.transform.SetParent(playerHand.transform);
                         productBox.transform.localPosition = Vector3.zero;
                         productBox.transform.localRotation = Quaternion.identity;
-                        uiManager.OnProductBoxInfo(p.ProductName, p.ProductCount);
-
-                        uiManager.OnProductBoxPanel();
                     }
                     //if (p != null)
                     //{
@@ -170,23 +171,24 @@ public class CenterCameraRaycast : MonoBehaviour
                 checkoutSystem.Calculate(moneyObj);
                 Destroy(moneyObj.gameObject);
             }
-        }
-        if (Input.GetMouseButtonDown(1))                                        //우클릭을 했을 때
-        {
-            if (hit.collider.CompareTag("Shelf"))                               //ray에 닿은 오브젝트가 "Shelf" 태그를 가지고 있다면
+            if (Input.GetMouseButtonDown(1))                                        //우클릭을 했을 때
             {
-                //SnackShelf hitShelf = hit.collider.GetComponent<SnackShelf>();    //ray에 닿은 오브젝트에게서 ShelfCtrl 컴포넌트를 갖고 온다.
-                //if (hitShelf.SnackList.Count != 0)                            //hitShelf가 상품을 하나라도 갖고 있다면
-                //{
-                //    GameObject productObj = hitShelf.SnackList[hitShelf.SnackList.Count - 1];        //productObj는 hitShelf가 갖고 있는 상품 목록의 가장 위에 있는 오브젝트 데이터를 가진다.
-                //    var boxInfo = productBox.GetComponent<ProductBoxInfo>();
-                //    productBox.InsertProduct(productObj);
-                //    hitShelf.PopItem(productObj, boxInfo.ProductType);
-                //    uiManager.OnProductBoxInfo(boxInfo.ProductName, boxInfo.ProductCount);
+                if (hit.collider.CompareTag("Shelf"))                               //ray에 닿은 오브젝트가 "Shelf" 태그를 가지고 있다면
+                {
+                    //SnackShelf hitShelf = hit.collider.GetComponent<SnackShelf>();    //ray에 닿은 오브젝트에게서 ShelfCtrl 컴포넌트를 갖고 온다.
+                    //if (hitShelf.SnackList.Count != 0)                            //hitShelf가 상품을 하나라도 갖고 있다면
+                    //{
+                    //    GameObject productObj = hitShelf.SnackList[hitShelf.SnackList.Count - 1];        //productObj는 hitShelf가 갖고 있는 상품 목록의 가장 위에 있는 오브젝트 데이터를 가진다.
+                    //    var boxInfo = productBox.GetComponent<ProductBoxInfo>();
+                    //    productBox.InsertProduct(productObj);
+                    //    hitShelf.PopItem(productObj, boxInfo.ProductType);
+                    //    uiManager.OnProductBoxInfo(boxInfo.ProductName, boxInfo.ProductCount);
 
-                //}
+                    //}
+                }
             }
         }
+        
         if (Input.GetKeyDown(KeyCode.F))                                                    //F를 눌렀을 때
         {
             if (productBox != null)                                                         //productBox를 들고 있다면
@@ -195,14 +197,10 @@ public class CenterCameraRaycast : MonoBehaviour
                 productBox.transform.SetParent(null);
                 productBox = lastBox;
             }
-            else
-            {
-                uiManager.CloseProductBoxPanel();
-            }
         }
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            customer.ShakeShelf();
+            uiManager.ToggleShopPanel();
         }
     }
 }

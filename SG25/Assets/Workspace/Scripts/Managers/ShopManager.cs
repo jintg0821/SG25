@@ -113,7 +113,7 @@ public class ShopManager : MonoBehaviour
         if (productCount > 0)
         {
             // 장바구니에 이미 같은 제품이 있는지 확인
-            CartItem existingItem = cartItems.Find(item => item.product.Index == product.Index);
+            CartItem existingItem = cartItems.Find(item => item.product.ID == product.ID);
 
             if (existingItem != null)
             {
