@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SGMilk
   m_EditorClassIdentifier: 
   productType: 0
-  ID: 0
-  Name: 13
+  ID: 13
+  Name: "SG\uC6B0\uC720"
   image: {fileID: 21300000, guid: 46e96322c373e7a438b7439bb310d665, type: 3}
   ProductModel: {fileID: 1746914780915659409, guid: a0cdeff76206b384c81e2c050f9dfa35, type: 3}

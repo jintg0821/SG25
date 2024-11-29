@@ -8,6 +8,8 @@ TagManager:
   - CounterProduct
   - Money
   - ProductBox
+  - Door
+  - PlacementArea
   layers:
   - Default
   - TransparentFX

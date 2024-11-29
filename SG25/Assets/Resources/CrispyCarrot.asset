@@ -15,5 +15,5 @@ MonoBehaviour:
   productType: 1
   ID: 5
   Name: "\uBC14\uC0AD\uB2F9\uADFC"
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 80719318d135df14eb53945f876af3b2, type: 3}
   ProductModel: {fileID: 1376639231136119930, guid: fa9dcfcddb096e54dbe734bb161b80b7, type: 3}

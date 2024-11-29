@@ -15,5 +15,5 @@ MonoBehaviour:
   productType: 0
   ID: 0
   Name: AgNO3
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: d48f74bd56d8da6478a7174e29f56bcd, type: 3}
   ProductModel: {fileID: 6470340551659598937, guid: 7a3fc7a058a6a6e48b669a3126b76dda, type: 3}
