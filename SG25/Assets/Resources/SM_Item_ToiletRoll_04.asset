@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6c8970855c6b24b8f46514e452f7b1, type: 3}
+  m_Name: SM_Item_ToiletRoll_04
+  m_EditorClassIdentifier: 
+  productType: 1
+  ID: 26
+  Name: "\uD734\uC9C0\uD55C\uBB36\uC74C"
+  image: {fileID: 21300000, guid: f622661a09a1a0e42b01e820004a14c5, type: 3}
+  ProductModel: {fileID: 1018630205408922, guid: b8de35baa831a7346ad6bec923b9e4d7, type: 3}

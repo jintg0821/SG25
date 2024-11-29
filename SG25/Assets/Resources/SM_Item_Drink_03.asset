@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6c8970855c6b24b8f46514e452f7b1, type: 3}
+  m_Name: SM_Item_Drink_03
+  m_EditorClassIdentifier: 
+  productType: 0
+  ID: 17
+  Name: "\uC74C\uB8CC\uC218_3"
+  image: {fileID: 21300000, guid: 7e2762d3f1c63f64db8ca40c1530c832, type: 3}
+  ProductModel: {fileID: 1117486454106644, guid: 0d84afd7281fd6c4686d69848ddbfff3, type: 3}

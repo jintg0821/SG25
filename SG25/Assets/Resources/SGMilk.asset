@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6c8970855c6b24b8f46514e452f7b1, type: 3}
+  m_Name: SGMilk
+  m_EditorClassIdentifier: 
+  productType: 0
+  ID: 0
+  Name: 13
+  image: {fileID: 21300000, guid: 46e96322c373e7a438b7439bb310d665, type: 3}
+  ProductModel: {fileID: 1746914780915659409, guid: a0cdeff76206b384c81e2c050f9dfa35, type: 3}
