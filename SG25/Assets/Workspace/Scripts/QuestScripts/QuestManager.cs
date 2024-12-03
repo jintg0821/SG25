@@ -25,10 +25,11 @@ public class QuestManager : MonoBehaviour
         //이게 리스트에 없어서 추측이다
         // 클릭 퀘스트 예시 추가
         var clickQuest = new Quest("Q003", "Cube Click Quest", "Click the cube 3 times", QuestType.Click, 1);
-        clickQuest.AddCondition(new ClickQuestCondition("Cube", 3));  // "Cube"는 CubeClickHandler의 itemId와 일치
+        clickQuest.AddCondition(new ClickQuestCondition(0, 3));  // "Cube"는 CubeClickHandler의 itemId와 일치
 
         allQuests.Add(clickQuest.Id, clickQuest);
         StartQuest("Q003");
+
     }
 
     public bool CanStartQuest(string questId)
@@ -44,9 +45,10 @@ public class QuestManager : MonoBehaviour
         quest.Start();
         activeQuests.Add(questId, quest);
         OnQuestStarted?.Invoke(quest);
+        Debug.Log("퀘스트 시작");
     }
 
-    public void OnItemClicked(string itemId)
+    public void OnItemClicked(int itemId)
     {
         // activeQuests.Values를 List로 복사하여 반복문에서 안전하게 사용할 수 있게 합니다.
         var activeQuestsList = activeQuests.Values.ToList();

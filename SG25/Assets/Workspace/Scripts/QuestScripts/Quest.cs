@@ -89,7 +89,7 @@ namespace MyGame.QuestSystem
             return conditions.Select(c => c.GetDescription()).ToList();
         }
 
-        public List<string> GetRewardDescriptions()                     //모든 퀘스트 보상의 설명을 가져오는 메서드 
+        public List<string> GetRewardDescriptions()                      //모든 퀘스트 보상의 설명을 가져오는 메서드 
         {
             return rewards.Select(r => r.GetDescription()).ToList();
         }

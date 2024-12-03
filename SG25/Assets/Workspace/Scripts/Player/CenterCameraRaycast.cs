@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class CenterCameraRaycast : MonoBehaviour
 {
@@ -40,12 +41,6 @@ public class CenterCameraRaycast : MonoBehaviour
         if (Physics.Raycast(ray, out hit, raycastRange))
         {
             Outline newOutline = hit.collider.gameObject.GetComponent<Outline>();
-
-            // 물체를 감지하면 해당 물체의 이름을 로그로 출력합니다.
-            if (hit.collider.gameObject.tag == "Item")
-            {
-                Debug.Log("Hit Object: " + hit.collider.gameObject.name);
-            }
 
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -156,12 +151,22 @@ public class CenterCameraRaycast : MonoBehaviour
                         }
                     }
                 }
+                if (hit.collider.CompareTag("Product"))
+                {
+                    QuestManager questManager = FindObjectOfType<QuestManager>();
+                    Product item = hit.collider.GetComponent<Product>();
+                    if (questManager != null)
+                    {
+                        questManager.OnItemClicked(item.product.ID);
+                    }
+                }
             }
             if (hit.collider.CompareTag("CounterProduct"))
             {
                 GameObject counterProductObj = hit.collider.gameObject;
                 checkoutSystem.SelectedProduct(counterProductObj);
             }
+            
             if (hit.collider.CompareTag("Money"))
             {
                 Money moneyObj = hit.collider.GetComponent<Money>();
