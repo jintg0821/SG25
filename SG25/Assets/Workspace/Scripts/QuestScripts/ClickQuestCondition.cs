@@ -4,12 +4,12 @@ using System;
 
 public class ClickQuestCondition : IQuestCondition
 {
-    private string targetItemId;
+    private int targetItemId;
     private int requiredClicks;
     private int currentClicks;
     private bool isCompleted;
 
-    public ClickQuestCondition(string targetItemId, int requiredClicks)
+    public ClickQuestCondition(int targetItemId, int requiredClicks)
     {
         this.targetItemId = targetItemId;
         this.requiredClicks = requiredClicks;
@@ -18,7 +18,7 @@ public class ClickQuestCondition : IQuestCondition
     }
 
     // 클릭 시 호출되는 메서드
-    public void ItemClicked(string itemId)
+    public void ItemClicked(int itemId)
     {
         if (itemId == targetItemId && !isCompleted)
         {

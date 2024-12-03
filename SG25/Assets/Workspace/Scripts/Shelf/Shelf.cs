@@ -23,7 +23,7 @@ public abstract class Shelf : MonoBehaviour
     public void PopItem(GameObject product, int productType)
     {
         if (GetShelfType() == productType)
-        {
+        { 
             if (ProductList.Count > 0)
             {
                 ProductList.Remove(product);

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CubeClickHandler : MonoBehaviour
 {
-    private string itemId = "Cube";  // 아이템의 고유 ID를 설정 (퀘스트와 일치하도록)
+    private int itemId;  // 아이템의 고유 ID를 설정 (퀘스트와 일치하도록)
 
     private void OnMouseDown()
     {
