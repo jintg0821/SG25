@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7427133360902310390}
   - component: {fileID: 6812769310101723872}
+  - component: {fileID: 7645298774518389539}
   m_Layer: 0
   m_Name: CrispyCarrot
   m_TagString: Untagged
@@ -45,7 +46,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  product: {fileID: 11400000, guid: 4f3202bb2e5eeae41a9cab069c393936, type: 2}
+--- !u!65 &7645298774518389539
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376639231136119930}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5829656, y: 1.6368225, z: 0.38008443}
+  m_Center: {x: -0.005635634, y: 0.24514854, z: -0.000000014901161}
 --- !u!1001 &8970205658627531182
 PrefabInstance:
   m_ObjectHideFlags: 0

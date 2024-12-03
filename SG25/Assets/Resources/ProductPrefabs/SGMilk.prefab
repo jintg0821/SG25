@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6598132070242911580}
   - component: {fileID: 529717784230482990}
+  - component: {fileID: 1578709684341570672}
   m_Layer: 0
   m_Name: SGMilk
   m_TagString: Untagged
@@ -45,7 +46,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  product: {fileID: 11400000, guid: 752fb65ab6616fd49b8c8a990f96a899, type: 2}
+--- !u!65 &1578709684341570672
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746914780915659409}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.63482535, y: 0.64198565, z: 2.0454018}
+  m_Center: {x: -0.010740444, y: 0.007160306, z: -0.14320576}
 --- !u!1001 &2066609163754943892
 PrefabInstance:
   m_ObjectHideFlags: 0

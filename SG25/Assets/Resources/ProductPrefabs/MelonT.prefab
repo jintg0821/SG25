@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5212095810721741941}
   - component: {fileID: -293781307609529328}
+  - component: {fileID: 3691126547671643192}
   m_Layer: 0
   m_Name: MelonT
   m_TagString: Untagged
@@ -45,7 +46,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  product: {fileID: 11400000, guid: 54574f06ee5ecb847a8a5f7be0a7d370, type: 2}
+--- !u!65 &3691126547671643192
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321621400813228324}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.74442935, y: 1.600294, z: 0.7325424}
+  m_Center: {x: -0.0029717535, y: 0.2466554, z: 0.0029717684}
 --- !u!1001 &8872023628494880952
 PrefabInstance:
   m_ObjectHideFlags: 0

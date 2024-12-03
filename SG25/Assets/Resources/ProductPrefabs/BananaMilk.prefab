@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 858688360874773785}
   - component: {fileID: 6948170002020272320}
+  - component: {fileID: 4446387457404703002}
   m_Layer: 0
   m_Name: BananaMilk
   m_TagString: Untagged
@@ -45,7 +46,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  product: {fileID: 11400000, guid: 5db0c52b8f9f04749aefbb7a10631f7f, type: 2}
+--- !u!65 &4446387457404703002
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5725734818437787914}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1835214, y: 2.223475, z: 1.1485647}
+  m_Center: {x: -0.004369557, y: 0.6029985, z: -0.004369557}
 --- !u!1001 &4159072463670171319
 PrefabInstance:
   m_ObjectHideFlags: 0

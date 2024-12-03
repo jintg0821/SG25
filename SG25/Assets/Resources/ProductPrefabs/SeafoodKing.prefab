@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7946062307046847262}
   - component: {fileID: 5619543306024226041}
+  - component: {fileID: 8854785868655049330}
   m_Layer: 0
   m_Name: SeafoodKing
   m_TagString: Untagged
@@ -45,7 +46,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  product: {fileID: 11400000, guid: 210ecf05702ad46499b74f2fcfac7dba, type: 2}
+--- !u!65 &8854785868655049330
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5702967934990441754}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1265991, y: 1.6663103, z: 0.6401924}
+  m_Center: {x: -0.0033315122, y: 0.25319815, z: 0.013326228}
 --- !u!1001 &8368053463055645883
 PrefabInstance:
   m_ObjectHideFlags: 0

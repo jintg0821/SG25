@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StrawBerryMilk
   m_EditorClassIdentifier: 
   productType: 0
-  ID: 28
+  ID: 31
   Name: "\uB538\uAE30\uC6B0\uC720"
   image: {fileID: 21300000, guid: 09aece8c22e77ce42ad5252f44a0cffc, type: 3}
   ProductModel: {fileID: 9164196992289197176, guid: de8b52c3838342a4b854fedb496cd803, type: 3}

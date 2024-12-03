@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6179019880460362268}
   - component: {fileID: 4631046936578876406}
+  - component: {fileID: 2983631633829095691}
   m_Layer: 0
   m_Name: SGCider
   m_TagString: Untagged
@@ -45,7 +46,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  product: {fileID: 11400000, guid: 2e79b3fa0c247fa4ea994c64244847d2, type: 2}
+--- !u!65 &2983631633829095691
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7766468504205552978}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.74184024, y: 1.7269232, z: 0.7146656}
+  m_Center: {x: -0.006793678, y: 0.32269967, z: 0.000000029802322}
 --- !u!1001 &5406536869667316239
 PrefabInstance:
   m_ObjectHideFlags: 0

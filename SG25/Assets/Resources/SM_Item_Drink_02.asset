@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SM_Item_Drink_02
   m_EditorClassIdentifier: 
   productType: 0
-  ID: 16
+  ID: 17
   Name: "\uC74C\uB8CC\uC218_2"
   image: {fileID: 21300000, guid: 955e7b0a7eeee1545ac581d0f253efc8, type: 3}
   ProductModel: {fileID: 1181754652597960, guid: a527f7e58d066214fb1a1de3e7e377c6, type: 3}

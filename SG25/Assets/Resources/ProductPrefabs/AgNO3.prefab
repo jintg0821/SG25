@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9125751384120351449}
   - component: {fileID: -9084871290591237996}
+  - component: {fileID: 2779325853759605653}
   m_Layer: 0
   m_Name: AgNO3
   m_TagString: Untagged
@@ -45,7 +46,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  product: {fileID: 11400000, guid: c40b7a6b92570254b91c4ef3ec6208af, type: 2}
+--- !u!65 &2779325853759605653
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470340551659598937}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5686951, y: 1.7628856, z: 0.5906967}
+  m_Center: {x: -0.000000029802322, y: 0.33872128, z: 0.0051723123}
 --- !u!1001 &862454700403592578
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1110441169428082668}
   - component: {fileID: -9022451686109038715}
+  - component: {fileID: 1527460510548348679}
   m_Layer: 0
   m_Name: GreenteaGo
   m_TagString: Untagged
@@ -45,7 +46,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  product: {fileID: 11400000, guid: 31afe3d3491187f43b709a5dc3fef26d, type: 2}
+--- !u!65 &1527460510548348679
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798581410013547858}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3845415, y: 1.7450492, z: 0.5553737}
+  m_Center: {x: 0.00000011920929, y: 0.31844866, z: 0.012016922}
 --- !u!1001 &2914090880437597235
 PrefabInstance:
   m_ObjectHideFlags: 0

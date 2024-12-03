@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3775499096149024949}
   - component: {fileID: 3451424832938170112}
+  - component: {fileID: 1428969256099047906}
   m_Layer: 0
   m_Name: AppleJuice
   m_TagString: Untagged
@@ -45,7 +46,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  product: {fileID: 11400000, guid: f542b21a6b5c767498ffabd5fa23c447, type: 2}
+--- !u!65 &1428969256099047906
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4596831700510279523}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6776106, y: 1.7434695, z: 0.67103124}
+  m_Center: {x: 0.0032896698, y: 0.33225846, z: 0.006579384}
 --- !u!1001 &7539887861345566174
 PrefabInstance:
   m_ObjectHideFlags: 0
