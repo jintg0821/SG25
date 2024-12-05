@@ -215,7 +215,15 @@ public class CustomerController : MonoBehaviour
 
             foreach (var targetP in targetProduct)
             {
+                int productType = (int)targetP.Key.productType;
+                int requiredCount = targetP.Value;
 
+                for (int i = 0; i < requiredCount; i++)
+                {
+                    GameObject product = shelf.ProductList.FirstOrDefault(p => (int)p.GetComponent<ProductData>().productType == productType);
+                    
+                    //if ()
+                }
             }
         }
     }

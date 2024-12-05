@@ -400,8 +400,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC0C1\uC810"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4ec159ab465642847b97cca645f5d93a, type: 2}
+  m_sharedMaterial: {fileID: 4533638851991533223, guid: 4ec159ab465642847b97cca645f5d93a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4769,7 +4769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7097f1843701c454eaa1a58497001fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaitTime: 0.5
+  waitTime: 0.5
   currentState: 0
   agent: {fileID: 0}
   isMoveDone: 0
@@ -10164,7 +10164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7097f1843701c454eaa1a58497001fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaitTime: 0.5
+  waitTime: 0.5
   currentState: 0
   agent: {fileID: 0}
   isMoveDone: 0
