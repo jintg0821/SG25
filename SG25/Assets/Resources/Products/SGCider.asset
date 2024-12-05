@@ -17,3 +17,5 @@ MonoBehaviour:
   Name: "SG\uC0AC\uC774\uB2E4"
   image: {fileID: 21300000, guid: 57219da353962f845ac81148857fa673, type: 3}
   ProductModel: {fileID: 7766468504205552978, guid: f5729ca1f5c5a2843b5c3ad58d44e625, type: 3}
+  buyCost: 12960
+  sellCost: 1800

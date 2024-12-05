@@ -17,3 +17,5 @@ MonoBehaviour:
   Name: "\uBC14\uB098\uB098\uC6B0\uC720"
   image: {fileID: 21300000, guid: 25499669f28a46e439abdc9265137cfe, type: 3}
   ProductModel: {fileID: 5725734818437787914, guid: 8e3bd6ed7ddf3624a8042529e5617464, type: 3}
+  buyCost: 2000
+  sellCost: 14400

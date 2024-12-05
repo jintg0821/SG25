@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4833620100882976}
   - component: {fileID: 33202577638146550}
   - component: {fileID: 23800237242630752}
-  - component: {fileID: 64660969163007842}
   - component: {fileID: -8396874550799742048}
+  - component: {fileID: 3515672509768516781}
   m_Layer: 0
   m_Name: SM_Item_Drink_04
   m_TagString: Untagged
@@ -85,8 +85,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64660969163007842
-MeshCollider:
+--- !u!114 &-8396874550799742048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235940528113736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  product: {fileID: 11400000, guid: 3f4001b8dc558c8449f03b2693afc698, type: 2}
+--- !u!65 &3515672509768516781
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,20 +116,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43315362345870244, guid: 0806fcd28dde26e4d854f1082878c850, type: 2}
---- !u!114 &-8396874550799742048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235940528113736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 0.07149902, y: 0.24619491, z: 0.08255127}
+  m_Center: {x: 0, y: 0.12309746, z: 0.0000012200326}

@@ -9,7 +9,6 @@ using static ShopManager;
 public class ShopManager : MonoBehaviour
 {
     [Header("상점패널")]
-    public Button OnCartPanelButton; //오른쪽 상단 장바구니 버튼 변수
     public GameObject productPrefab;//상품창 프리팹 변수
     public GameObject shopPanel;    //상점 패널
     public GameObject productContent;
@@ -45,7 +44,6 @@ public class ShopManager : MonoBehaviour
     {
         UpdatePlayerMoneyUI();
         products = Resources.LoadAll<ProductData>("Products");  //리소스 파일에 있는 ProductData타입을 모두 products배열에 넣는다.
-        // OnCartPanelButtonClick();
         Generateproduct();
         GenerateCartProduct();
 
@@ -98,7 +96,7 @@ public class ShopManager : MonoBehaviour
             if (productObj != null && products[index] != null)
             {
                 productName.text = products[index].name;               
-                //price.text = products[index].buyCost.ToString();
+                price.text = products[index].buyCost.ToString();
                 image.sprite = products[index].image;
             }
         }
@@ -185,7 +183,7 @@ public class ShopManager : MonoBehaviour
             // 제품 정보와 수량 표시
             productName.text = cartItem.product.name;
             productQuantity.text = $"x{cartItem.quantity}";
-            //productPrice.text = cartItem.product.buyCost.ToString();
+            productPrice.text = cartItem.product.buyCost.ToString();
 
             if (cartItem.quantity == 0 || cartItem == null)
             {
@@ -285,7 +283,7 @@ public class ShopManager : MonoBehaviour
         // 장바구니에 담긴 모든 제품의 총 가격 계산
         foreach (CartItem cartItem in cartItems)
         {
-            //totalPrice += cartItem.product.buyCost * cartItem.quantity; // 제품 가격 * 수량
+            totalPrice += cartItem.product.buyCost * cartItem.quantity; // 제품 가격 * 수량
         }
         return totalPrice;
     }
@@ -294,11 +292,5 @@ public class ShopManager : MonoBehaviour
         var productInfo = new ProductBoxScriptObject();
         ProductBoxGenerator.GetOrder(productInfo, product);
         ProductBoxGenerator.GenerateProductBox(product);
-
-
-
-        //GameObject BoxObj = Instantiate(productBoxObj, gameObject.transform); // 제품 박스 프리팹을 생성
-        //ProductBox productBox = BoxObj.GetComponent<ProductBox>();
-        //productBox.GenerationProduct(product); // 박스에 제품 정보 설정
     }
 }

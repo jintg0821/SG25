@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4996681105711326}
   - component: {fileID: 33555479915157358}
   - component: {fileID: 23538000670143956}
-  - component: {fileID: 64259396313612788}
   - component: {fileID: -4870478410485868809}
+  - component: {fileID: 3120720597192334370}
   m_Layer: 0
   m_Name: SM_Item_Mouthwash_01
   m_TagString: Untagged
@@ -85,8 +85,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64259396313612788
-MeshCollider:
+--- !u!114 &-4870478410485868809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593417829797992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  product: {fileID: 11400000, guid: 1b7cf595e3f042746a5bf6412c98563a, type: 2}
+--- !u!65 &3120720597192334370
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,20 +116,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43108947949964276, guid: 47bc597be00f54d458c828344d149560, type: 2}
---- !u!114 &-4870478410485868809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593417829797992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 0.11064133, y: 0.3590738, z: 0.1570484}
+  m_Center: {x: 0, y: 0.1795369, z: 0}
