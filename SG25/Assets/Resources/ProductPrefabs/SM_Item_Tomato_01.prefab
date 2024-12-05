@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4904681128424790}
   - component: {fileID: 33117739146724146}
   - component: {fileID: 23214346634437696}
-  - component: {fileID: 64923223897549354}
   - component: {fileID: 1907929068411820609}
+  - component: {fileID: 233549363700193488}
   m_Layer: 0
   m_Name: SM_Item_Tomato_01
   m_TagString: Untagged
@@ -85,8 +85,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64923223897549354
-MeshCollider:
+--- !u!114 &1907929068411820609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967612108536486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  product: {fileID: 11400000, guid: 34f679018acb93747be81064ab1eb7c6, type: 2}
+--- !u!65 &233549363700193488
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,20 +116,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43672004472923818, guid: fb155be5ae26add40ac7202a1ecb9a7d, type: 2}
---- !u!114 &1907929068411820609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967612108536486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 0.12011337, y: 0.11730209, z: 0.13869673}
+  m_Center: {x: -0.0000017546117, y: 0.0127421, z: 0.0000004582107}

@@ -49,29 +49,4 @@ public class ProductBoxGenerator : MonoBehaviour
         }
         productBoxInfoList.Clear();
     }
-
-    // Update is called once per frame
-//    void Update()
-//    {
-//        if (Input.GetKeyDown(KeyCode.F1))
-//        {
-//            //Debug.Log("ProductBoxInfo");
-
-//            //var product = new ProductBoxScriptObject();
-
-//            //product.ProductName = "ÄÝ¶ó";
-//            //product.ProductCount = 9;
-//            //product.ProductType = ProductBoxType.BEVERAGES;
-
-//            //GetOrder(product);  
-//        }
-
-//        if (Input.GetKeyDown(KeyCode.F2))
-//        {
-//            Debug.Log("GenerateProductBox");
-//            GenerateProductBox();
-//        }
-
-        
-//    }
 }

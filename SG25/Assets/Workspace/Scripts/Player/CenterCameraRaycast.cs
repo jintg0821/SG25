@@ -73,8 +73,8 @@ public class CenterCameraRaycast : MonoBehaviour
                     productBox = hit.collider.GetComponent<ProductBox>();
                     if (productBox != null)
                     {
-                        var boxCollider = productBox.transform.gameObject.GetComponent<BoxCollider>();
-                        boxCollider.enabled = false;
+                        var collider = productBox.transform.gameObject.GetComponent<MeshCollider>();
+                        collider.enabled = false;
 
                         // world traqnsform position
                         productBox.transform.gameObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -113,6 +113,7 @@ public class CenterCameraRaycast : MonoBehaviour
                                     var snackShelf = shelf as SnackShelf;
                                     if (productBox != null)
                                     {
+                                        Debug.Log("SnackShelf 클릭");
                                         var boxInfo = productBox.GetBoxInfo();
                                         if (boxInfo.ProductType == snackShelf.GetShelfType())
                                         {
@@ -133,6 +134,7 @@ public class CenterCameraRaycast : MonoBehaviour
                                 var drinkShelf = shelf as DrinkShelf;
                                 if (productBox != null)
                                 {
+                                    Debug.Log("DrinkShelf 클릭");
                                     var boxInfo = productBox.GetBoxInfo();
                                     if (boxInfo.ProductType == drinkShelf.GetShelfType())
                                     {
@@ -198,7 +200,7 @@ public class CenterCameraRaycast : MonoBehaviour
         {
             if (productBox != null)                                                         //productBox를 들고 있다면
             {
-                productBox.GetComponent<BoxCollider>().enabled = true;
+                productBox.GetComponent<MeshCollider>().enabled = true;
                 productBox.transform.SetParent(null);
                 productBox = lastBox;
             }

@@ -16,4 +16,6 @@ public class ProductData : ScriptableObject
     public string Name;
     public Sprite image;
     public GameObject ProductModel;
+    public int buyCost;
+    public int sellCost;
 }

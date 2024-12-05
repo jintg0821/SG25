@@ -6,6 +6,6 @@ public class DrinkShelf : Shelf
 {
     public override int GetShelfType()
     {
-        return 1;
+        return 0;
     }
 }

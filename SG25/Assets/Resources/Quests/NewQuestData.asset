@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NewQuestData
   m_EditorClassIdentifier: 
   questId: 1
-  questTitle: "\uC74C\uB8CC\uC218 \uCC44\uC6B0\uAC00"
+  questTitle: "\uC74C\uB8CC\uC218 \uCC44\uC6B0\uAE30"
   questDescription: "\uC544\uBB34 \uC885\uB958\uC758 \uC74C\uB8CC\uC218\uB97C \uCC44\uC6CC\uC8FC\uC138\uC694!"
   questType: 0
   targetItemId: 0

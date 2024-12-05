@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4017985117000138}
   - component: {fileID: 33875454781525784}
   - component: {fileID: 23107556860933880}
-  - component: {fileID: 64749388577293812}
   - component: {fileID: 1316789504415170081}
+  - component: {fileID: -2534637115574363352}
   m_Layer: 0
   m_Name: SM_Item_Pumpkin_01
   m_TagString: Untagged
@@ -85,8 +85,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64749388577293812
-MeshCollider:
+--- !u!114 &1316789504415170081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476921203752414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  product: {fileID: 11400000, guid: fce7ab410e4f4f14ca7ae09123d862c9, type: 2}
+--- !u!65 &-2534637115574363352
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,20 +116,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43662075597756484, guid: a7453e9816505964ba7d7332c77fd980, type: 2}
---- !u!114 &1316789504415170081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476921203752414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 0.43493164, y: 0.3190418, z: 0.42952514}
+  m_Center: {x: 0, y: 0.1595209, z: 0}

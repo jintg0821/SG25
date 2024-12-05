@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4276807954511724}
   - component: {fileID: 33817889189206228}
   - component: {fileID: 23317249100287256}
-  - component: {fileID: 64308573410109662}
   - component: {fileID: 1450969203236110695}
+  - component: {fileID: 7191963282693664630}
   m_Layer: 0
   m_Name: SM_Item_Sausage_Raw_01
   m_TagString: Untagged
@@ -85,8 +85,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64308573410109662
-MeshCollider:
+--- !u!114 &1450969203236110695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235474313391460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  product: {fileID: 11400000, guid: 4f43a124f6229a84b956e9f061184a6b, type: 2}
+--- !u!65 &7191963282693664630
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,20 +116,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43350077669988682, guid: c9f30024b7a83054f9e001b3ef84de31, type: 2}
---- !u!114 &1450969203236110695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235474313391460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 596c49a79c3adf345895b54112acaea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  product: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 0.28639892, y: 0.058039702, z: 0.070857845}
+  m_Center: {x: 0, y: 0.029019851, z: 0.0000001527369}
