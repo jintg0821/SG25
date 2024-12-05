@@ -1,13 +1,14 @@
-// QuestManager.cs
+using MyGame.QuestSystem;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using System.Linq;
-using System;
-using MyGame.GuestSystem;
-using MyGame.QuestSystem;
 
 public class QuestManager : MonoBehaviour
 {
+    [Header("Quest Data")]
+    [SerializeField] public QuestData[] questDataList;  // ScriptableObject로 관리되는 퀘스트 데이터 리스트
+
     private Dictionary<string, Quest> allQuests = new Dictionary<string, Quest>();  // 모든 퀘스트
     private Dictionary<string, Quest> activeQuests = new Dictionary<string, Quest>();  // 진행 중인 퀘스트
     private Dictionary<string, Quest> completedQuests = new Dictionary<string, Quest>();  // 완료된 퀘스트
@@ -18,18 +19,23 @@ public class QuestManager : MonoBehaviour
     private void Start()
     {
         InitializeQuests();
+        questDataList = Resources.LoadAll<QuestData>("Quests");
     }
 
     private void InitializeQuests()
     {
-        //이게 리스트에 없어서 추측이다
-        // 클릭 퀘스트 예시 추가
-        var clickQuest = new Quest("Q003", "Cube Click Quest", "Click the cube 3 times", QuestType.Click, 1);
-        clickQuest.AddCondition(new ClickQuestCondition(0, 3));  // "Cube"는 CubeClickHandler의 itemId와 일치
+        // ScriptableObject 데이터를 기반으로 퀘스트 생성
+        foreach (var questData in questDataList)
+        {
+            var quest = new Quest(questData.questId, questData.questTitle, questData.questDescription, questData.questType, 1);
+            quest.AddCondition(new ClickQuestCondition(questData.targetItemId, questData.requiredAmount));
+            allQuests.Add(quest.Id, quest);
+        }
+    }
 
-        allQuests.Add(clickQuest.Id, clickQuest);
-        StartQuest("Q003");
-
+    public void QuestAcceptance(QuestData quest)
+    {
+        StartQuest(quest.questId);
     }
 
     public bool CanStartQuest(string questId)
@@ -45,12 +51,11 @@ public class QuestManager : MonoBehaviour
         quest.Start();
         activeQuests.Add(questId, quest);
         OnQuestStarted?.Invoke(quest);
-        Debug.Log("퀘스트 시작");
+        Debug.Log($"퀘스트 시작: {quest.Title}");
     }
 
     public void OnItemClicked(int itemId)
     {
-        // activeQuests.Values를 List로 복사하여 반복문에서 안전하게 사용할 수 있게 합니다.
         var activeQuestsList = activeQuests.Values.ToList();
 
         foreach (var quest in activeQuestsList)
@@ -66,6 +71,22 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    public void ShelfStock(int itemId)
+    {
+        var activeQuestsList = activeQuests.Values.ToList();
+
+        foreach (var quest in activeQuestsList)
+        {
+            foreach (var condition in quest.GetConditions())
+            {
+                if (condition is CShelfStockQuestCondition clickCondition)
+                {
+                    clickCondition.ShelfStock(itemId);
+                    UpdateQuestProgress(quest.Id);
+                }
+            }
+        }
+    }
 
     public void UpdateQuestProgress(string questId)
     {
@@ -77,7 +98,6 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    
     private void CompleteQuest(string questId)
     {
         if (!activeQuests.TryGetValue(questId, out Quest quest)) return;
@@ -86,7 +106,6 @@ public class QuestManager : MonoBehaviour
         completedQuests.Add(questId, quest);
         OnQuestCompleted?.Invoke(quest);
 
-        Debug.Log($"Quest completed: {quest.Title}");  // 퀘스트 완료 메시지 출력
+        Debug.Log($"퀘스트 완료: {quest.Title}");
     }
-
 }

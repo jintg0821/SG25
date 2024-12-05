@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6c8970855c6b24b8f46514e452f7b1, type: 3}
+  m_Name: SGCider
+  m_EditorClassIdentifier: 
+  productType: 0
+  ID: 12
+  Name: "SG\uC0AC\uC774\uB2E4"
+  image: {fileID: 21300000, guid: 57219da353962f845ac81148857fa673, type: 3}
+  ProductModel: {fileID: 7766468504205552978, guid: f5729ca1f5c5a2843b5c3ad58d44e625, type: 3}

@@ -1,18 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ShelfType 
-{
-    public const int SHELF_SNACK = 0;
-    public const int SHELF_DRINK = 1;
-    public const int SHELF_ICECREAM = 2;
-}
 
 public abstract class Shelf : MonoBehaviour
 {
     public List<Transform> ProductPoseList = new List<Transform>();
     public List<GameObject> ProductList = new List<GameObject>();
+
+    private QuestManager questManager;
     public abstract int GetShelfType();
 
     public int GetSize()
@@ -23,7 +17,7 @@ public abstract class Shelf : MonoBehaviour
     public void PopItem(GameObject product, int productType)
     {
         if (GetShelfType() == productType)
-        { 
+        {
             if (ProductList.Count > 0)
             {
                 ProductList.Remove(product);
@@ -49,11 +43,18 @@ public abstract class Shelf : MonoBehaviour
                 if (ProductList.Count < ProductPoseList.Count)
                 {
                     Transform availablePosition = ProductPoseList[ProductList.Count];
+                    Product productObj = product.GetComponent<Product>();
                     product.transform.SetParent(availablePosition);
                     product.transform.localPosition = Vector3.zero;
                     product.transform.localScale = Vector3.one;
                     product.transform.localRotation = Quaternion.identity;
                     ProductList.Add(product);
+                    QuestManager questManager = FindObjectOfType<QuestManager>();
+                    if (questManager != null)
+                    {
+                        questManager.OnItemClicked(productObj.product.ID);
+                    }
+
                 }
                 else
                 {

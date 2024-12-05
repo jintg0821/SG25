@@ -14,6 +14,7 @@ namespace MyGame.GuestSystem
 
     public enum QuestType    //퀘스트의 유형을 구분하는 열거형
     {
-        Click                // 클릭 했는지 확인하는 퀘스트
+        Click,                // 클릭 했는지 확인하는 퀘스트
+        ShelfStocking
     }
 }

@@ -158,7 +158,7 @@ public class CenterCameraRaycast : MonoBehaviour
                     if (questManager != null)
                     {
                         questManager.OnItemClicked(item.product.ID);
-                    }
+                    }   
                 }
             }
             if (hit.collider.CompareTag("CounterProduct"))

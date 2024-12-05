@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6c8970855c6b24b8f46514e452f7b1, type: 3}
+  m_Name: ChocoDdong
+  m_EditorClassIdentifier: 
+  productType: 1
+  ID: 3
+  Name: "\uCD08\uCF54\uB625"
+  image: {fileID: 21300000, guid: a20f57c714dbc8945a62b8f270561766, type: 3}
+  ProductModel: {fileID: 4228782083387146730, guid: efd95f293233ae6479bd9495697cbdd8, type: 3}
