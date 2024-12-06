@@ -15,6 +15,7 @@ public class QuestManager : MonoBehaviour
 
     public event Action<Quest> OnQuestStarted;
     public event Action<Quest> OnQuestCompleted;
+    public event Action OnQuestListUpdated; // 퀘스트 목록 갱신 이벤트
 
     private void Start()
     {
@@ -98,14 +99,24 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    private void CompleteQuest(string questId)
+    public void CompleteQuest(string questId)
     {
         if (!activeQuests.TryGetValue(questId, out Quest quest)) return;
 
         activeQuests.Remove(questId);
         completedQuests.Add(questId, quest);
-        OnQuestCompleted?.Invoke(quest);
 
         Debug.Log($"퀘스트 완료: {quest.Title}");
+
+        OnQuestListUpdated?.Invoke(); // UI 갱신 이벤트 호출
+    }
+
+    private void GrantRewards(Quest quest)
+    {
+        foreach (var reward in quest.GetRewards()) // 퀘스트의 보상 목록 반복
+        {
+            reward.Grant(null); // 보상을 지급 (플레이어 오브젝트 전달 가능)
+            Debug.Log($"보상 지급: {reward.GetDescription()}");
+        }
     }
 }

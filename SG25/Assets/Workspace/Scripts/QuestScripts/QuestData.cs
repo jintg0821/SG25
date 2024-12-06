@@ -1,14 +1,30 @@
 using MyGame.GuestSystem;
+using MyGame.QuestSystem;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewQuestData", menuName = "Quest/Quest Data")]
+[CreateAssetMenu(fileName = "NewQuestData", menuName = "ScriptableObjects/QuestData")]
 public class QuestData : ScriptableObject
 {
-    public string questId;          // 퀘스트 ID
-    public string questTitle;       // 퀘스트 제목
-    [TextArea] public string questDescription; // 퀘스트 설명
-    public QuestType questType;     // 퀘스트 유형 (예: Click, Collect 등)
-    public int targetItemId;        // 목표 아이템 ID (클릭이나 수집할 대상)
-    public int requiredAmount;      // 목표 조건 (예: 클릭 횟수, 수집 개수)
-    public int rewardAmount;        // 보상 금액
+    public string questId;
+    public string questTitle;
+    public string questDescription;
+    public QuestType questType;
+    public int targetItemId;
+    public int requiredAmount;
+    public int rewardAmount; // 보상으로 지급할 경험치나 아이템 수량
+
+    private void InitializeQuests()
+    {
+        foreach (var questData in questDataList)
+        {
+            var quest = new Quest(questData.questId, questData.questTitle, questData.questDescription, questData.questType, 1);
+            quest.AddCondition(new ClickQuestCondition(questData.targetItemId, questData.requiredAmount));
+
+            // 기존 보상 외에 게임머니 보상 추가
+            quest.AddReward(new MoneyReward(questData.rewardAmount));
+
+            allQuests.Add(quest.Id, quest);
+        }
+    }
+
 }

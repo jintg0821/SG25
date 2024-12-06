@@ -50,7 +50,7 @@ public class QuestPopup : MonoBehaviour
             }
         }
     }
-    
+
     /// <summary>
     /// ScriptableObject 기반 퀘스트 데이터를 사용해 팝업을 표시합니다.
     /// </summary>
@@ -87,14 +87,13 @@ public class QuestPopup : MonoBehaviour
             {
                 questId.text = $"ID : {questManager.questDataList[index].questId}";
                 questTitle.text = questManager.questDataList[index].questTitle;
-                questDescription.text = questManager.questDataList[index].questDescription; 
+                questDescription.text = questManager.questDataList[index].questDescription;
                 requiredAmount.text = $"남은 개수 : {questManager.questDataList[index].requiredAmount.ToString()}";
-                rewardAmount.text =$"보상 : {questManager.questDataList[index].rewardAmount.ToString()}";
-                
+                rewardAmount.text = $"보상 : {questManager.questDataList[index].rewardAmount.ToString()}";
             }
         }
-        
-        
+
+
     }
 
     /// <summary>
@@ -106,4 +105,22 @@ public class QuestPopup : MonoBehaviour
         isPopupVisible = false;
         playerCtrl.SetCursorState(isPopupVisible);
     }
+
+    public void DeleteQuest(QuestData quest)
+    {
+        // 퀘스트 완료 시 보상을 지급
+        if (questManager != null)
+        {
+            questManager.CompleteQuest(quest.questId); // 퀘스트 완료 처리
+            Debug.Log($"{quest.questTitle} 완료! 보상이 지급되었습니다.");
+        }
+
+        // 퀘스트 목록 업데이트
+        GenerateQuestList();
+        {
+            rewardAmount.text = $"보상 : {questManager.questDataList[index].rewardAmount} 게임머니";
+
+        }
+    }
+
 }

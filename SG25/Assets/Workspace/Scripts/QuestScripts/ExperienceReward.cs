@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace MyGame.GuestSystem
 {
-    public class ExperienceReward : IQuestReward    //경험치 보상을 구현하는 클래스
+    public class ExperienceReward : IQuestReward
     {
-        private int experienceAmount;       //보상을 지급할 경험치량
+        private int experienceAmount;
 
         public ExperienceReward(int amount)
         {
@@ -15,11 +13,14 @@ namespace MyGame.GuestSystem
 
         public void Grant(GameObject player)
         {
-            Debug.Log($"Granted {experienceAmount}experience");
+            // 실제 보상 지급 로직 (여기선 로그로 처리)
+            Debug.Log($"경험치 {experienceAmount} 지급!");
+            // 예시: player.GetComponent<PlayerStats>().AddExperience(experienceAmount);
         }
-        public string GetDescription() => $"{experienceAmount}ExperiencePoints";        //보상 내용을 문자열로 반환
+
+        public string GetDescription()
+        {
+            return $"{experienceAmount} 경험치";
+        }
     }
-
-
 }
-

@@ -1,53 +1,59 @@
 using MyGame.GuestSystem;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-//using static UnityEngine.Rendering.VirtualTexturing.Procedural;
 
 namespace MyGame.QuestSystem
 {
     public class Quest
     {
-        public string Id { get; set; }                      //퀘스트 고유 식별자
-        public string Title { get; set; }                   //퀘스트 제목
-        public string Description { get; set; }             //퀘스트의 상세 설명
-        public QuestType Type { get; set; }                 //퀘스트 유형
-        public QuestStatus Status { get; set; }             //퀘스트 현재 상태
-        public int Day { get; set; }                      //퀘스트 요구 데이 -> 일차 수로 퀘스트 요구 조건이 달라짐
+        // 퀘스트의 기본 정보
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public QuestType Type { get; set; }
+        public QuestStatus Status { get; set; }
+        public int Day { get; set; } // 특정 퀘스트 요구일
 
-        private List<IQuestCondition> conditions;    //퀘스트 완료 조건 목록
-        private List<IQuestReward> rewards;           //퀘스트 보상 목록
-        private List<string> prerequisiteQuestIds;                                  //선행 퀘스트 ID 목록 
+        private List<IQuestCondition> conditions; // 퀘스트 완료 조건 목록
+        private List<IQuestReward> rewards;       // 퀘스트 보상 목록
 
-        //퀘스트 초기화 생성자 
+        // 생성자: 퀘스트의 기본 정보를 초기화
         public Quest(string id, string title, string description, QuestType type, int day)
         {
             Id = id;
             Title = title;
             Description = description;
             Type = type;
-            Status = QuestStatus.NotStarted;
+            Status = QuestStatus.NotStarted; // 초기 상태: 시작되지 않음
             Day = day;
 
-            this.conditions = new List<IQuestCondition>();
-            this.rewards = new List<IQuestReward>();
-            this.prerequisiteQuestIds = new List<string>();
+            conditions = new List<IQuestCondition>();
+            rewards = new List<IQuestReward>();
+        }
+
+        // 조건 및 보상 추가 메서드
+        public void AddCondition(IQuestCondition condition)
+        {
+            conditions.Add(condition);
+        }
+
+        public void AddReward(IQuestReward reward)
+        {
+            rewards.Add(reward);
         }
 
         public List<IQuestCondition> GetConditions()
         {
             return conditions;
         }
-        public void AddCondition(IQuestCondition condition)     //퀘스트에 완료 조건을 추가하는 메서드 
+
+        public List<IQuestReward> GetRewards()
         {
-            conditions.Add(condition);
+            return rewards; // 퀘스트에 추가된 모든 보상 반환
         }
-        public void AddReward(IQuestReward reward)              //퀘스트에 보상을 추가하는 메서드
-        {
-            rewards.Add(reward);
-        }
-        public void Start()                                     //퀘스트를 시작하는 메서드
+
+        // 퀘스트 시작
+        public void Start()
         {
             if (Status == QuestStatus.NotStarted)
             {
@@ -59,37 +65,29 @@ namespace MyGame.QuestSystem
             }
         }
 
-        public bool CheckCompletion()                               //퀘스트 완료 조건을 검사하는 메서드
+        // 퀘스트 완료 여부 확인
+        public bool CheckCompletion()
         {
             if (Status != QuestStatus.InProgress) return false;
+
             return conditions.All(c => c.IsMet());
         }
 
-        public void Complete(GameObject player)                     //퀘스트를 완료하고 보상을 지급하는 메서드 
-        {
-            if (Status != QuestStatus.InProgress) return;
-            if (!CheckCompletion()) return;
-
-            foreach (var reward in rewards)
-            {
-                reward.Grant(player);
-            }
-
-            Status = QuestStatus.Completed;
-        }
-
-        public float GetProgress()                              //퀘스트의 전체 진행도를 계산하는 메서드 
+        // 퀘스트 진행도 반환
+        public float GetProgress()
         {
             if (conditions.Count == 0) return 0;
             return conditions.Average(c => c.GetProgress());
         }
 
-        public List<string> GetConditionDescriptions()                  //모든 퀘스트 조건의 설명을 가져오는 메서드 
+        // 모든 조건 설명 반환
+        public List<string> GetConditionDescriptions()
         {
             return conditions.Select(c => c.GetDescription()).ToList();
         }
 
-        public List<string> GetRewardDescriptions()                      //모든 퀘스트 보상의 설명을 가져오는 메서드 
+        // 모든 보상 설명 반환
+        public List<string> GetRewardDescriptions()
         {
             return rewards.Select(r => r.GetDescription()).ToList();
         }
