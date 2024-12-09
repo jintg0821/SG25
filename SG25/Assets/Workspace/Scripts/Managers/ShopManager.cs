@@ -200,7 +200,7 @@ public class ShopManager : MonoBehaviour
         // 플레이어의 돈이 총 가격보다 많거나 같을 때 구매 가능
         if (GameManager.Instance.playerMoney >= (totalPrice + deliveryFee))
         {
-            GameManager.Instance.playerMoney -= (totalPrice + deliveryFee); // 플레이어 돈에서 총 가격 차감
+            UIManager.Instance.DecreaseMoneyText(totalPrice + deliveryFee); // 플레이어 돈에서 총 가격 차감
             UpdatePlayerMoneyUI();     // UI 업데이트
 
             Debug.Log($"Items purchased for {totalPrice}. Remaining money: {GameManager.Instance.playerMoney}");

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MyGame.GuestSystem
+namespace MyGame.QuestSystem
 {
     public interface IQuestCondition
     {

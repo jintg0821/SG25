@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MyGame.GuestSystem
+namespace MyGame.QuestSystem
 {
     public class CollectionQuestCondition : IQuestCondition //아이템을 수집하는 퀘스트 조건을 정의 하는 클래스
     {
