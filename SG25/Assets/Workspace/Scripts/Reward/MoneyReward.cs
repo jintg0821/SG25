@@ -1,4 +1,4 @@
-using MyGame.GuestSystem;
+using MyGame.QuestSystem;
 using UnityEngine;
 
 namespace MyGame.QuestSystem

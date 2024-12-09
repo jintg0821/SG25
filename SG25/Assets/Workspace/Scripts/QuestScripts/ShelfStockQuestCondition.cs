@@ -1,39 +1,52 @@
-using MyGame.GuestSystem;
+using MyGame.QuestSystem;
 using System;
+using UnityEngine;
 
-public class CShelfStockQuestCondition : IQuestCondition
+public class ShelfStockQuestCondition : IQuestCondition
 {
     private int targetItemId;
-    private int requiredClicks;
+    private int targetItemType;
+    private int requiredStocks;
     private int currentShelfStock;
     private bool isCompleted;
 
-    public CShelfStockQuestCondition(int targetItemId, int requiredClicks)
+    public ShelfStockQuestCondition(int targetItemId, int targetItemType ,int requiredClicks)
     {
         this.targetItemId = targetItemId;
-        this.requiredClicks = requiredClicks;
+        this.targetItemType = targetItemType;
+        this.requiredStocks = requiredClicks;
         this.currentShelfStock = 0;
         this.isCompleted = false;
     }
 
     // 진열대 아이템 넣을때 호출되는 메서드
-    public void ShelfStock(int itemId)
+    public void ItemShelfStock(int itemId)
     {
         if (itemId == targetItemId && !isCompleted)
         {
             currentShelfStock++;
-            if (currentShelfStock >= requiredClicks)
+            Debug.Log($"현재 넣은 개수 {currentShelfStock}");
+            if (currentShelfStock >= requiredStocks)
+            {
+                isCompleted = true;
+                Debug.Log(isCompleted);
+            }
+        }
+    }
+
+    public void ItemTypeShelfStock(int itemType)
+    {
+        if (itemType == targetItemType && !isCompleted)
+        {
+            currentShelfStock++;
+            if (currentShelfStock >= requiredStocks)
             {
                 isCompleted = true;
             }
         }
     }
 
-    // IQuestCondition 인터페이스 구현
-    public bool IsMet()
-    {
-        return isCompleted;
-    }
+    public bool IsMet() => currentShelfStock >= requiredStocks;
 
     public void Initialize()
     {
@@ -43,11 +56,11 @@ public class CShelfStockQuestCondition : IQuestCondition
 
     public float GetProgress()
     {
-        return (float)currentShelfStock / requiredClicks;
+        return (float)currentShelfStock / requiredStocks;
     }
 
     public string GetDescription()
     {
-        return $"Click {targetItemId} {requiredClicks} times. Progress: {currentShelfStock}/{requiredClicks}";
+        return $"Click {targetItemId} {requiredStocks} times. Progress: {currentShelfStock}/{requiredStocks}";
     }
 }

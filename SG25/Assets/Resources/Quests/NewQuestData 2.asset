@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36027a34c1e000a4cb15e9f3906246c8, type: 3}
   m_Name: NewQuestData 2
   m_EditorClassIdentifier: 
-  questId: 1
+  questId: 3
   questTitle: "\uC74C\uB8CC\uC218 \uCC44\uC6B0\uAE30"
   questDescription: "\uC544\uBB34 \uC885\uB958\uC758 \uC74C\uB8CC\uC218\uB97C \uCC44\uC6CC\uC8FC\uC138\uC694!"
-  questType: 0
-  targetItemId: 0
+  questType: 1
+  productType: 0
+  targetItemId: 99
+  targetItemType: 0
   requiredAmount: 2
-  rewardAmount: 0
+  rewardAmount: 10000

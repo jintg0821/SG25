@@ -33,6 +33,7 @@ public class CheckoutSystem : MonoBehaviour
         {
             UIManager.IncreaseMoneyText(takeMoney);
             isSell = true;
+            QuestManager.Instance.Calculate();
         }
     }
 

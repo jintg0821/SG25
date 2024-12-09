@@ -1,16 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum PRODUCTTYPE
+{
+    Beverages,
+    Snacks,
+    FrozenFoods,
+    Null
+}
+
 [CreateAssetMenu(fileName = "NewProductData", menuName = "ScriptableObjects/ProductModel")]
 public class ProductData : ScriptableObject
 {
-    public enum PRODUCTTYPE
-    {
-        Beverages,
-        Snacks,
-        FrozenFoods
-    }
-
     public PRODUCTTYPE productType;
     public int ID;
     public string Name;

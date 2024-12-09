@@ -1,6 +1,7 @@
-using MyGame.GuestSystem;
+using MyGame.QuestSystem;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace MyGame.QuestSystem
 {
@@ -12,23 +13,26 @@ namespace MyGame.QuestSystem
         public string Description { get; set; }
         public QuestType Type { get; set; }
         public QuestStatus Status { get; set; }
-        public int Day { get; set; } // 특정 퀘스트 요구일
+        public PRODUCTTYPE ProductType { get; set; }
+        //public int Day { get; set; } // 특정 퀘스트 요구일
 
         private List<IQuestCondition> conditions; // 퀘스트 완료 조건 목록
         private List<IQuestReward> rewards;       // 퀘스트 보상 목록
 
         // 생성자: 퀘스트의 기본 정보를 초기화
-        public Quest(string id, string title, string description, QuestType type, int day)
+        public Quest(string id, string title, string description, QuestType type, PRODUCTTYPE productType)//, int day)
         {
             Id = id;
             Title = title;
             Description = description;
             Type = type;
             Status = QuestStatus.NotStarted; // 초기 상태: 시작되지 않음
-            Day = day;
+            ProductType = productType;
+            //Day = day;
 
             conditions = new List<IQuestCondition>();
             rewards = new List<IQuestReward>();
+            ProductType = productType;
         }
 
         // 조건 및 보상 추가 메서드
@@ -71,6 +75,19 @@ namespace MyGame.QuestSystem
             if (Status != QuestStatus.InProgress) return false;
 
             return conditions.All(c => c.IsMet());
+        }
+
+        public void Complete(GameObject player)                 //퀘스트를 완료하고 보상을 지급하는 메서드
+        {
+            if (Status != QuestStatus.InProgress) return;
+            if (!CheckCompletion()) return;
+
+            foreach (var reward in rewards)
+            {
+                reward.Grant(player);
+            }
+
+            Status = QuestStatus.Completed;
         }
 
         // 퀘스트 진행도 반환

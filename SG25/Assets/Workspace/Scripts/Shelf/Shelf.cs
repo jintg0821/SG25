@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using MyGame.QuestSystem;
 
 public abstract class Shelf : MonoBehaviour
 {
     public List<Transform> ProductPoseList = new List<Transform>();
     public List<GameObject> ProductList = new List<GameObject>();
-
-    private QuestManager questManager;
     public abstract int GetShelfType();
 
     public int GetSize()
@@ -49,12 +48,10 @@ public abstract class Shelf : MonoBehaviour
                     product.transform.localScale = Vector3.one;
                     product.transform.localRotation = Quaternion.identity;
                     ProductList.Add(product);
-                    QuestManager questManager = FindObjectOfType<QuestManager>();
-                    if (questManager != null)
-                    {
-                        questManager.OnItemClicked(productObj.product.ID);
-                    }
 
+                    QuestManager.Instance.ItemShelfStock(productObj.product.ID);
+                    QuestManager.Instance.ItemTypeShelfStock((int)productObj.product.productType);
+                    
                 }
                 else
                 {

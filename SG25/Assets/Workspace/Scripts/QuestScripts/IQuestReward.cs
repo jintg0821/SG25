@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace MyGame.GuestSystem
+namespace MyGame.QuestSystem
 {
     public interface IQuestReward        //퀘스트 보상을 정의하는 기본 인터페이스
     {
