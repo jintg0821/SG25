@@ -5,8 +5,7 @@ public abstract class Shelf : MonoBehaviour
 {
     public List<Transform> ProductPoseList = new List<Transform>();
     public List<GameObject> ProductList = new List<GameObject>();
-
-    private QuestManager questManager;
+     
     public abstract int GetShelfType();
 
     public int GetSize()
@@ -42,28 +41,41 @@ public abstract class Shelf : MonoBehaviour
             {
                 if (ProductList.Count < ProductPoseList.Count)
                 {
-                    Transform availablePosition = ProductPoseList[ProductList.Count];
-                    Product productObj = product.GetComponent<Product>();
-                    product.transform.SetParent(availablePosition);
-                    product.transform.localPosition = Vector3.zero;
-                    product.transform.localScale = Vector3.one;
-                    product.transform.localRotation = Quaternion.identity;
-                    ProductList.Add(product);
+                    
+                    Product newProduct = product.GetComponent<Product>();
+                    if (ProductList.Count != 0)
+                    {   
+                        Product firstProduct = ProductList[0].GetComponent<Product>();
+                        if (firstProduct.product.ID == newProduct.product.ID)
+                        {
+                            Transform availablePosition = ProductPoseList[ProductList.Count];
+                            product.transform.SetParent(availablePosition);
+                            product.transform.localPosition = Vector3.zero;
+                            product.transform.localScale = Vector3.one;
+                            product.transform.localRotation = Quaternion.identity;
+                            ProductList.Add(product);
+                        }
+                    }
+                    else
+                    {
+                        Transform availablePosition = ProductPoseList[ProductList.Count];
+                        product.transform.SetParent(availablePosition);
+                        product.transform.localPosition = Vector3.zero;
+                        product.transform.localScale = Vector3.one;
+                        product.transform.localRotation = Quaternion.identity;
+                        ProductList.Add(product);
+                    }
                     QuestManager questManager = FindObjectOfType<QuestManager>();
                     if (questManager != null)
                     {
-                        questManager.OnItemClicked(productObj.product.ID);
+                        questManager.OnItemClicked(newProduct.product.ID);
                     }
 
                 }
                 else
                 {
-                    Debug.Log("과자 진열대 꽉참");
+                    Debug.Log("full");
                 }
-            }
-            else
-            {
-                Debug.Log("진열대에 자리 없음");
             }
         }
     }

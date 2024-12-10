@@ -53,6 +53,7 @@ public class CustomerController : MonoBehaviour
 
     public Transform target;
     public Transform counter;
+    public Transform customerHand;
 
     public Transform[] exitPoints;
     public MoneyData[] moneyPrefabs;
@@ -83,6 +84,7 @@ public class CustomerController : MonoBehaviour
         currentState = CustomerState.Idle;
 
         AssignPriority();
+        SearchShelfs();
         TargetProduct();
     }
 
@@ -113,7 +115,7 @@ public class CustomerController : MonoBehaviour
                 WaitCounter();
                 break;
             case CustomerState.WalkingToCounter:
-                WaitCounter();
+                WalkingToCounter();
                 break;
             case CustomerState.PlacingProduct:
                 PlacingProduct();
@@ -154,13 +156,18 @@ public class CustomerController : MonoBehaviour
             if (!targetProduct.ContainsKey(targetP) && count > 0)
             {
                 targetProduct.Add(targetP, count);
-                Debug.Log($"목표 상품 : ID{targetP.ID}{targetP.name} {count}개 담음");
+                Debug.Log($"ID : {targetP.ID} NAME : {targetP.name} COUNT : {count}");
                 foreach (var shelfObj in shelfList)
                 {
                     Shelf shelf = shelfObj.GetComponent<Shelf>();
-                    if (shelf.ProductList.Contains(targetP.ProductModel))
+                    foreach (var shelfProduct in shelf.ProductList)
                     {
-                        targetPosList.Add(shelf.transform);
+                        Product product = shelfProduct.GetComponent<Product>();
+                        if (product.product.ID == targetP.ID && !targetPosList.Contains(shelf.transform))
+                        {
+                            targetPosList.Add(shelf.transform);
+                            break;
+                        }
                     }
                 }
             }
@@ -194,7 +201,14 @@ public class CustomerController : MonoBehaviour
             }
             else
             {
-                ChangeState(CustomerState.WaitCounter, waitTime);
+                if (pickProductList.Count > 0 && targetProduct.Count == 0)
+                {
+                    ChangeState(CustomerState.WaitCounter, waitTime);
+                }
+                else
+                {
+                    //ChangeState(CustomerState.LeavingStore, waitTime);
+                }
             }
         }
     }
@@ -217,44 +231,159 @@ public class CustomerController : MonoBehaviour
             {
                 int productType = (int)targetP.Key.productType;
                 int requiredCount = targetP.Value;
+                Debug.Log($"requiredCount : {requiredCount}");
 
                 for (int i = 0; i < requiredCount; i++)
                 {
-                    GameObject product = shelf.ProductList.FirstOrDefault(p => (int)p.GetComponent<ProductData>().productType == productType);
+                    GameObject product = shelf.ProductList.FirstOrDefault(p => (int)p.GetComponent<Product>().product.productType == productType);
                     
-                    //if ()
+                    if (product != null)
+                    {
+                        shelf.PopItem(product, productType);
+
+                        product.transform.SetParent(customerHand);
+                        product.transform.localPosition = Vector3.one;
+                        product.transform.localRotation = Quaternion.identity;
+
+                        pickProductList.Add(product);
+                        
+                        ChangeState(CustomerState.Idle);
+                        Debug.Log("A");
+                    }
+                }
+                targetPosList.Remove(shelf.transform);
+                ChangeState(CustomerState.Idle);
+                Debug.Log("B");
+            }   
+        }
+    }
+
+    Transform GetAvailableCounterLinePosition()
+    {
+        GameObject[] counterLine = GameObject.FindGameObjectsWithTag("CounterLine");
+
+        foreach (GameObject pos in counterLine)
+        {
+            bool positionOccupied = false;
+            CustomerController[] allCustomers = FindObjectsOfType<CustomerController>();
+            foreach (var customer in allCustomers)
+            {
+                if (customer != this && customer.target == pos.transform)
+                {
+                    positionOccupied = true; ;
+                    break;
                 }
             }
+
+            if (!positionOccupied)
+            {
+                return pos.transform;
+            }
         }
+        return null;
     }
 
     void WaitCounter()
     {
+        CustomerController[] allCustomers = FindObjectsOfType<CustomerController>();
+        bool isCounterOccupied = false;
+        foreach (var customer in allCustomers)
+        {
+            if (customer != this && customer.currentState == CustomerState.WaitingCalcPrice || customer.currentState == CustomerState.GivingMoney
+                || customer.currentState == CustomerState.WalkingToCounter || customer.currentState == CustomerState.PlacingProduct)
+            {
+                isCounterOccupied = true;
+                break;
+            }
+        }
 
+        if (isCounterOccupied)
+        {
+            Transform availablePosition = GetAvailableCounterLinePosition();
+            if (availablePosition != null)
+            {
+                target = availablePosition;
+                agent.SetDestination(availablePosition.position);
+            }
+        }
+
+        if (!isCounterOccupied && pickProductList.Count > 0)
+        {
+            target = counter;
+            MoveToTarget();
+            ChangeState(CustomerState.WalkingToCounter, waitTime);
+        }
     }
 
     void WalkingToCounter()
     {
-
+        if (timer.IsFinished() && isMoveDone)
+        {
+            ChangeState(CustomerState.PlacingProduct, waitTime);
+        }
     }
 
     void PlacingProduct()
     {
+        if (timer.IsFinished() && isMoveDone)
+        {
+            PlaceProduct();
 
+            if (pickProductList.Count == 0) PlaceProduct();
+        }
     }
 
     void GivingMoney()
     {
-
+        //if (timer.IsFinished() && checkoutSystem.counterProduct.Count == 0)
+        //{
+        //    GiveMoney(checkoutSystem.totalPrice);
+        //    for (int i = 0; i < checkoutSystem.takeMoneys.Count; i++)
+        //    {
+        //        int sum = 0;
+        //        sum += checkoutSystem.takeMoneys[i];
+        //        Debug.Log(sum);
+        //    }
+        //    animator.SetBool("Idle", true);
+        //    ChangeState(CustomerState.WaitingCalcPrice, waitTime);
+        //}
     }
 
     void WaitingCalcPrice()
     {
+        //if (checkoutSystem.takeMoneys.Count == 0 && checkoutSystem.counterProduct.Count == 0)
+        //{
+        //    //checkoutSystem.ShowChangeAmount();
+        //    Debug.Log(checkoutSystem.changeMoney);
+        //    checkoutSystem.isCalculating = true;
+        //    if (checkoutSystem.isSell == true)
+        //    {
+        //        checkoutSystem.isSell = false;
+        //        animator.SetBool("Idle", true);
+        //        ChangeState(CustomerState.LeavingStore, waitTime);
+        //    }
 
+        //}
     }
 
     void LeavingStore()
     {
+        Destroy(gameObject);
+        Debug.Log("Customer Leaving");
+    }
 
+    IEnumerator PlaceProduct()
+    {
+        foreach (var product in pickProductList)
+        {
+            product.transform.SetParent(counter);
+            product.transform.localPosition = new Vector3(0f, 1f, 0f);
+            product.transform.localRotation = Quaternion.identity;
+
+            pickProductList.Remove(product);
+
+            yield return new WaitForSeconds(1f);
+        }
+        ChangeState(CustomerState.GivingMoney, waitTime);
     }
 }

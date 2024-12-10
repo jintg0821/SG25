@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db300de66711ca04987b54252c5751d3, type: 3}
+  m_Name: 10
+  m_EditorClassIdentifier: 
+  value: 10
+  moneyModel: {fileID: 707542815880660597, guid: 21c20abdacd654c789b6c5344329cbf5, type: 3}
