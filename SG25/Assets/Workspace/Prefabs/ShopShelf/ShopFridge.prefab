@@ -829,7 +829,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4889942744434935083}
   m_Layer: 0
-  m_Name: Shelf2-2
+  m_Name: Shelf3-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -880,8 +880,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916262394968507629}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.626, y: 0.909, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.62599945, y: 0.9089999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1615,8 +1615,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3327888773482934492}
+  - component: {fileID: 16962161539352659}
   m_Layer: 0
-  m_Name: Shelf1-1
+  m_Name: Shelf3-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1643,6 +1644,27 @@ Transform:
   - {fileID: 6439331603398228005}
   m_Father: {fileID: 6950378047773016957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &16962161539352659
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332820713344541044}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1689949, y: 0.50357753, z: 1}
+  m_Center: {x: -0.0052814484, y: 0.24821123, z: 0}
 --- !u!1 &3417540342418032540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,12 +1888,12 @@ Transform:
   - {fileID: 3746249934916891595}
   - {fileID: 6438211244620017190}
   - {fileID: 4114134538086686112}
-  - {fileID: 3327888773482934492}
-  - {fileID: 3258308277313429972}
-  - {fileID: 4108334043725725200}
-  - {fileID: 4889942744434935083}
   - {fileID: 8934378896214818540}
   - {fileID: 5610598721502942681}
+  - {fileID: 4108334043725725200}
+  - {fileID: 3258308277313429972}
+  - {fileID: 3327888773482934492}
+  - {fileID: 4889942744434935083}
   m_Father: {fileID: 3954304350561011825}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4059175927105444215
@@ -2471,7 +2493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3258308277313429972}
   m_Layer: 0
-  m_Name: Shelf1-2
+  m_Name: Shelf2-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2928,7 +2950,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8934378896214818540}
   m_Layer: 0
-  m_Name: Shelf3-1
+  m_Name: Shelf1-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3490,7 +3512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5610598721502942681}
   m_Layer: 0
-  m_Name: Shelf3-2
+  m_Name: Shelf1-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3526,7 +3548,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3954304350561011825}
-  - component: {fileID: 6176444313059379899}
   m_Layer: 0
   m_Name: ShopFridge
   m_TagString: Untagged
@@ -3550,27 +3571,6 @@ Transform:
   - {fileID: 6950378047773016957}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6176444313059379899
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7295587605540617667}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7357269745737739917
 GameObject:
   m_ObjectHideFlags: 0

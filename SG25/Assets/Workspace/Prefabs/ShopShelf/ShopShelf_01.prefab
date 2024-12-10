@@ -219,8 +219,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5221214176371375679}
-  - component: {fileID: 5119433851449878925}
-  - component: {fileID: 164073643860198761}
+  - component: {fileID: 214760734080554673}
+  - component: {fileID: 3279103624147835236}
   m_Layer: 0
   m_Name: Shelf_1
   m_TagString: Shelf
@@ -254,7 +254,7 @@ Transform:
   - {fileID: 3301747385824424154}
   m_Father: {fileID: 7347193246140138626}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5119433851449878925
+--- !u!114 &214760734080554673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,7 +278,7 @@ MonoBehaviour:
   - {fileID: 4813757940267790126}
   - {fileID: 3301747385824424154}
   ProductList: []
---- !u!65 &164073643860198761
+--- !u!65 &3279103624147835236
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,8 +297,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5984974, y: 0.5255147, z: 0.45002747}
-  m_Center: {x: -0.0026960373, y: 0.23724264, z: -0.05391693}
+  m_Size: {x: 1.5984974, y: 0.5255147, z: 0.68777466}
+  m_Center: {x: -0.0026960373, y: 0.23724264, z: -0.056678772}
 --- !u!1 &1182906182702258994
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,8 +413,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3743573789081522556}
-  - component: {fileID: 276641143367043473}
-  - component: {fileID: 5590524668847795591}
+  - component: {fileID: 4536585770147143305}
+  - component: {fileID: 8803747612406762455}
   m_Layer: 0
   m_Name: Shelf_2
   m_TagString: Shelf
@@ -448,7 +448,7 @@ Transform:
   - {fileID: 3837627346265165420}
   m_Father: {fileID: 7347193246140138626}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &276641143367043473
+--- !u!114 &4536585770147143305
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -472,7 +472,7 @@ MonoBehaviour:
   - {fileID: 2785345366370795863}
   - {fileID: 3837627346265165420}
   ProductList: []
---- !u!65 &5590524668847795591
+--- !u!65 &8803747612406762455
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -491,8 +491,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5984974, y: 0.47698784, z: 0.552475}
-  m_Center: {x: 0.0026960373, y: 0.20758724, z: -0.105140686}
+  m_Size: {x: 1.5984974, y: 0.47698784, z: 0.6700592}
+  m_Center: {x: 0.0026960373, y: 0.20758724, z: -0.04634857}
 --- !u!1 &1452538011397807913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2917,8 +2917,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8561730427354986163}
-  - component: {fileID: 4689581590465324295}
-  - component: {fileID: 8784187878119264325}
+  - component: {fileID: 635840433090958820}
+  - component: {fileID: 6705942923203804016}
   m_Layer: 0
   m_Name: Shelf_0
   m_TagString: Shelf
@@ -2952,7 +2952,7 @@ Transform:
   - {fileID: 4190856502596248684}
   m_Father: {fileID: 7347193246140138626}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4689581590465324295
+--- !u!114 &635840433090958820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2976,7 +2976,7 @@ MonoBehaviour:
   - {fileID: 5743084823689526968}
   - {fileID: 4190856502596248684}
   ProductList: []
---- !u!65 &8784187878119264325
+--- !u!65 &6705942923203804016
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

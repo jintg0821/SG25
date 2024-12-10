@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using MyGame.QuestSystem;
 
 public abstract class Shelf : MonoBehaviour
 {
@@ -71,6 +72,9 @@ public abstract class Shelf : MonoBehaviour
                         questManager.OnItemClicked(newProduct.product.ID);
                     }
 
+                    QuestManager.Instance.ItemShelfStock(productObj.product.ID);
+                    QuestManager.Instance.ItemTypeShelfStock((int)productObj.product.productType);
+                    
                 }
                 else
                 {

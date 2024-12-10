@@ -1,5 +1,5 @@
 // ClickQuestCondition.cs
-using MyGame.GuestSystem;
+using MyGame.QuestSystem;
 using System;
 
 public class ClickQuestCondition : IQuestCondition

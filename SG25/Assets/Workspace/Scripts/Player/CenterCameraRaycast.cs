@@ -113,7 +113,6 @@ public class CenterCameraRaycast : MonoBehaviour
                                     var snackShelf = shelf as SnackShelf;
                                     if (productBox != null)
                                     {
-                                        Debug.Log("SnackShelf ????");
                                         var boxInfo = productBox.GetBoxInfo();
                                         if (boxInfo.ProductType == snackShelf.GetShelfType())
                                         {
@@ -128,13 +127,11 @@ public class CenterCameraRaycast : MonoBehaviour
                                     }
 
                                 }
-                                Debug.Log("SnackShelf");
                                 break;
                             case DrinkShelf:
                                 var drinkShelf = shelf as DrinkShelf;
                                 if (productBox != null)
                                 {
-                                    Debug.Log("DrinkShelf ????");
                                     var boxInfo = productBox.GetBoxInfo();
                                     if (boxInfo.ProductType == drinkShelf.GetShelfType())
                                     {
@@ -145,7 +142,6 @@ public class CenterCameraRaycast : MonoBehaviour
                                         }
                                     }
                                 }
-                                Debug.Log("DrinkShelf");
                                 break;
                             default:
                                 Debug.Log("Unknown shelf type");
