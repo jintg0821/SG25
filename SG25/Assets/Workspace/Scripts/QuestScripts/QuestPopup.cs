@@ -31,7 +31,7 @@ public class QuestPopup : MonoBehaviour
         // 초기 퀘스트 생성 표시
         RefreshQuestList();
     }
-
+    //StartQuest(quest.Id);
     private void Update()
     {
         // Z 키 입력 감지 (토글 기능)
@@ -43,7 +43,6 @@ public class QuestPopup : MonoBehaviour
             }
             else
             {
-                // 테스트용 데이터로 팝업 열기
                 ShowPopup();
             }
         }
@@ -58,23 +57,51 @@ public class QuestPopup : MonoBehaviour
         popupPanel.SetActive(true);
         isPopupVisible = true;
         playerCtrl.SetCursorState(isPopupVisible);
-
+        questIcon.gameObject.SetActive(false);
         RefreshQuestList();
     }
 
-    private void CreateQuestUI(Quest quest)                             // 개별 퀘스트 UI 생성
+    public void CreateQuestUI(Quest quest)                             // 개별 퀘스트 UI 생성
     {
         GameObject questObj = Instantiate(questPrefab, questContent);
 
         TextMeshProUGUI idText = questObj.transform.Find("QuestID").GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI titleText = questObj.transform.Find("Title").GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI descriptionText = questObj.transform.Find("QuestDescription").GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI progressText = questObj.transform.Find("CurrentProgress").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI titleText = questObj.transform.Find("QuestTitle").GetComponent<TextMeshProUGUI>();
+        //TextMeshProUGUI descriptionText = questObj.transform.Find("QuestDescription").GetComponent<TextMeshProUGUI>();
+        Slider progressSlider = questObj.transform.Find("QuestProgressSlider").GetComponent<Slider>();
+        TextMeshProUGUI progressText = questObj.transform.Find("QuestProcess").GetComponent<TextMeshProUGUI>();
+        Button startButton = questObj.transform.Find("QuestStartButton").GetComponent<Button>();
+        TextMeshProUGUI rewardText = questObj.transform.Find("RewardText").GetComponent<TextMeshProUGUI>();
 
         idText.text = quest.Id;
         titleText.text = quest.Title;
-        descriptionText.text = quest.Description;
+        //descriptionText.text = quest.Description;
+        float progress = quest.GetProgress();
+        progressSlider.value = progress;
         progressText.text = $"Progress: {quest.GetProgress():P0}";
+        rewardText.text = string.Join("\n", quest.GetRewardDescriptions());
+
+        if (quest.Status == QuestStatus.NotStarted)
+        {
+            TextMeshProUGUI buttonText = startButton.GetComponentInChildren<TextMeshProUGUI>();
+            buttonText.text = "시작하기";
+            startButton.onClick.AddListener(() => QuestManager.Instance.StartQuest(quest.Id));
+        }
+        if (quest.Status == QuestStatus.InProgress)
+        {
+            TextMeshProUGUI buttonText = startButton.GetComponentInChildren<TextMeshProUGUI>();
+            buttonText.text = "진행 중";
+            startButton.onClick.RemoveListener(() => QuestManager.Instance.StartQuest(quest.Id));
+            startButton.image.color = Color.gray;
+            //QuestManager.Instance.UpdateQuestProgress(quest.Id);
+        }
+        if (quest.CheckCompletion())
+        {
+            TextMeshProUGUI buttonText = startButton.GetComponentInChildren<TextMeshProUGUI>();
+            buttonText.text = "보상 받기";
+            startButton.onClick.AddListener(() => QuestManager.Instance.CompleteQuest(quest.Id));
+            startButton.image.color = Color.green;
+        }
     }
 
     private void UpdateQuestUI(Quest quest)                             // 퀘스트 상태 변경 시 UI 업데이트
@@ -89,13 +116,14 @@ public class QuestPopup : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (var quest in questManager.GetActiveQuest())            // 활성 퀘스트 표시
+        foreach (var quest in questManager.GetAvailableQuests())            // 활성 퀘스트 표시
         {
             CreateQuestUI(quest);
         }
     }
     public void HidePopup()
     {
+        
         popupPanel.SetActive(false);
         isPopupVisible = false;
         playerCtrl.SetCursorState(isPopupVisible);

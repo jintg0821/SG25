@@ -13,6 +13,7 @@ TagManager:
   - Product
   - CustomerPoint
   - CounterLine
+  - Customer
   layers:
   - Default
   - TransparentFX

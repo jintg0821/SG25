@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 1006045820261958584}
   m_Layer: 0
   m_Name: Character_Father_02
-  m_TagString: Untagged
+  m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -413,6 +413,7 @@ MonoBehaviour:
   isMoveDone: 0
   target: {fileID: 0}
   counter: {fileID: 0}
+  counterPivot: {fileID: 0}
   customerHand: {fileID: 477837938038598391}
   exitPoints:
   - {fileID: 0}

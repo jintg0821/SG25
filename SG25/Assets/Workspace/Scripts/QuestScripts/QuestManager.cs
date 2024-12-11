@@ -19,7 +19,6 @@ public class QuestManager : Singleton<QuestManager>
 
     public void Start()
     {
-        
         questDataList = Resources.LoadAll<QuestData>("Quests");
         InitializeQuests();
         Debug.Log($"활성화 된 퀘스트 {activeQuests.Count}");
@@ -31,11 +30,18 @@ public class QuestManager : Singleton<QuestManager>
         foreach (var questData in questDataList)
         {
             var quest = new Quest(questData.questId, questData.questTitle, questData.questDescription, questData.questType, questData.productType);//, 1);
-            quest.AddCondition(new ShelfStockQuestCondition(questData.targetItemId, questData.targetItemType ,questData.requiredAmount));
+            switch (questData.questType)
+            {
+                case QuestType.ShelfStocking:
+                    quest.AddCondition(new ShelfStockQuestCondition(questData.targetItemId, questData.targetItemType, questData.requiredAmount));
+                    break;
+                case QuestType.Calculate:
+                    quest.AddCondition(new CalculateQuestCondition(questData.requiredAmount));
+                    break;
+            }
             quest.AddReward(new ExperienceReward(questData.rewardAmount));
             allQuests.Add(quest.Id, quest);
             Debug.Log($"등록된 퀘스트 {questData.questTitle}");
-            StartQuest(quest.Id);
         }
     }
     public bool CanStartQuest(string questId)
@@ -61,6 +67,7 @@ public class QuestManager : Singleton<QuestManager>
         quest.Start();
         activeQuests.Add(questId, quest);
         OnQuestStarted?.Invoke(quest);
+        OnQuestListUpdated?.Invoke();
         Debug.Log($"퀘스트 시작: {quest.Title}");
     }
 
@@ -75,7 +82,6 @@ public class QuestManager : Singleton<QuestManager>
                 if (condition is ClickQuestCondition clickCondition)
                 {
                     clickCondition.ItemClicked(itemId);
-                    UpdateQuestProgress(quest.Id);
                 }
             }
         }
@@ -92,7 +98,6 @@ public class QuestManager : Singleton<QuestManager>
                 if (condition is ShelfStockQuestCondition stockCondition)
                 {
                     stockCondition.ItemShelfStock(itemId);
-                    UpdateQuestProgress(quest.Id);
                 }
             }
         }
@@ -109,7 +114,6 @@ public class QuestManager : Singleton<QuestManager>
                 if (condition is ShelfStockQuestCondition stockCondition)
                 {
                     stockCondition.ItemTypeShelfStock(itemType);
-                    UpdateQuestProgress(quest.Id);
                 }
             }
         }
@@ -126,7 +130,6 @@ public class QuestManager : Singleton<QuestManager>
                 if (condition is CalculateQuestCondition calculateCondition)
                 {
                     calculateCondition.Calculate();
-                    UpdateQuestProgress(quest.Id);
                 }
             }
         }
@@ -149,8 +152,10 @@ public class QuestManager : Singleton<QuestManager>
         var player = GameObject.FindGameObjectWithTag("Player");
         quest.Complete(player);
         activeQuests.Remove(questId);
+        allQuests.Remove(questId);
         completedQuests.Add(questId, quest);
         OnQuestCompleted?.Invoke(quest);
+        OnQuestListUpdated?.Invoke();
 
         Debug.Log($"퀘스트 완료: {quest.Title}");
     }

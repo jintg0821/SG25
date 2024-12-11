@@ -55,6 +55,8 @@ public abstract class Shelf : MonoBehaviour
                             product.transform.localScale = Vector3.one;
                             product.transform.localRotation = Quaternion.identity;
                             ProductList.Add(product);
+                            QuestManager.Instance.ItemShelfStock(newProduct.product.ID);
+                            QuestManager.Instance.ItemTypeShelfStock((int)newProduct.product.productType);
                             return true;
                         }
                     }
@@ -66,16 +68,11 @@ public abstract class Shelf : MonoBehaviour
                         product.transform.localScale = Vector3.one;
                         product.transform.localRotation = Quaternion.identity;
                         ProductList.Add(product);
-                        return true;
-                    }
-                    QuestManager questManager = FindObjectOfType<QuestManager>();
-                    if (questManager != null)
-                    {
-                        questManager.OnItemClicked(newProduct.product.ID);
-
                         QuestManager.Instance.ItemShelfStock(newProduct.product.ID);
                         QuestManager.Instance.ItemTypeShelfStock((int)newProduct.product.productType);
+                        return true;
                     }
+                    
                 }
                 else
                 {

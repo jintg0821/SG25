@@ -15,7 +15,7 @@ namespace MyGame.QuestSystem
         public void Grant(GameObject player)
         {
             // GameManager를 통해 플레이어에게 돈 지급
-            GameManager.Instance.AddMoney(moneyAmount, null);
+            GameManager.Instance.AddMoney(moneyAmount);
             Debug.Log($"게임머니 {moneyAmount} 지급!");
         }
 

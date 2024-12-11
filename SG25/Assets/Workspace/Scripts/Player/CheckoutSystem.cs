@@ -14,6 +14,11 @@ public class CheckoutSystem : MonoBehaviour
 
     public UIManager UIManager;
 
+    void Start()
+    {
+        UIManager = FindObjectOfType<UIManager>();
+    }
+
     public void SelectedProduct(GameObject productObj)
     {
         productObj = counterProductList[counterProductList.Count - 1];
@@ -31,12 +36,14 @@ public class CheckoutSystem : MonoBehaviour
 
         if (takeMoneys.Count == 0)
         {
-            UIManager.IncreaseMoneyText(takeMoney);
+            GameManager.Instance.AddMoney(takeMoney);
             isSell = true;
             totalPrice = 0;
             changeMoney = 0;
             takeMoney = 0;
             QuestManager.Instance.Calculate();
+            GameManager.Instance.dailyCalculationCount++;
+            GameManager.Instance.totalCalculationCount++;
         }
     }
 

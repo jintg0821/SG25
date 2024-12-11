@@ -13,6 +13,12 @@ public class CenterCameraRaycast : MonoBehaviour
     public ProductBox lastBox;
     public CheckoutSystem checkoutSystem;
     public UIManager uiManager;
+
+    void Start()
+    {
+        checkoutSystem = FindObjectOfType<CheckoutSystem>();
+        uiManager = FindObjectOfType<UIManager>();
+    }
     void Update()
     {
         PerformRaycast();
@@ -196,16 +202,6 @@ public class CenterCameraRaycast : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Shelf"))                               //ray?? ???? ?????????? "Shelf" ?????? ?????? ??????
                 {
-                    //SnackShelf hitShelf = hit.collider.GetComponent<SnackShelf>();    //ray?? ???? ?????????????? ShelfCtrl ?????????? ???? ????.
-                    //if (hitShelf.SnackList.Count != 0)                            //hitShelf?? ?????? ???????? ???? ??????
-                    //{
-                    //    GameObject productObj = hitShelf.SnackList[hitShelf.SnackList.Count - 1];        //productObj?? hitShelf?? ???? ???? ???? ?????? ???? ???? ???? ???????? ???????? ??????.
-                    //    var boxInfo = productBox.GetComponent<ProductBoxInfo>();
-                    //    productBox.InsertProduct(productObj);
-                    //    hitShelf.PopItem(productObj, boxInfo.ProductType);
-                    //    uiManager.OnProductBoxInfo(boxInfo.ProductName, boxInfo.ProductCount);
-
-                    //}
                     var shelf = hit.collider.gameObject.GetComponent<Shelf>();
                     if (shelf != null)
                     {
@@ -224,7 +220,6 @@ public class CenterCameraRaycast : MonoBehaviour
                                             snackShelf.PopItem(productObj, boxInfo.ProductType);
                                         }
                                     }
-
                                 }
                                 break;
                             case DrinkShelf:
@@ -232,14 +227,11 @@ public class CenterCameraRaycast : MonoBehaviour
                                 if (productBox != null)
                                 {
                                     var boxInfo = productBox.GetBoxInfo();
-                                    if (boxInfo.ProductType == drinkShelf.GetShelfType())
+                                    GameObject productObj = drinkShelf.ProductList[drinkShelf.ProductList.Count - 1];
+                                    if (boxInfo.ProductType == drinkShelf.GetShelfType() && productObj.GetComponent<Product>().product.ID == boxInfo.ProductID)
                                     {
-                                        if (productBox.ProductList.Count > 0)
-                                        {
-                                            bool success = drinkShelf.PushItem(productBox.ProductList[0], boxInfo.ProductType);
-                                            if (success)
-                                                productBox.ProductList.Remove(productBox.ProductList[0]);
-                                        }
+                                        productBox.InsertProduct(productObj);
+                                        drinkShelf.PopItem(productObj, boxInfo.ProductType);
                                     }
                                 }
                                 break;
@@ -248,14 +240,11 @@ public class CenterCameraRaycast : MonoBehaviour
                                 if (productBox != null)
                                 {
                                     var boxInfo = productBox.GetBoxInfo();
-                                    if (boxInfo.ProductType == icecreamShelf.GetShelfType())
+                                    GameObject productObj = icecreamShelf.ProductList[icecreamShelf.ProductList.Count - 1];
+                                    if (boxInfo.ProductType == icecreamShelf.GetShelfType() && productObj.GetComponent<Product>().product.ID == boxInfo.ProductID)
                                     {
-                                        if (productBox.ProductList.Count > 0)
-                                        {
-                                            bool success = icecreamShelf.PushItem(productBox.ProductList[0], boxInfo.ProductType);
-                                            if (success)
-                                                productBox.ProductList.Remove(productBox.ProductList[0]);
-                                        }
+                                        productBox.InsertProduct(productObj);
+                                        icecreamShelf.PopItem(productObj, boxInfo.ProductType);
                                     }
                                 }
                                 break;

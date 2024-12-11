@@ -15,13 +15,12 @@ namespace MyGame.QuestSystem
         {
             // 실제 보상 지급 로직 (여기선 로그로 처리)
             Debug.Log($"{moneyAmount}원 지급!");
-            UIManager.Instance.IncreaseMoneyText(moneyAmount);
-            // 예시: player.GetComponent<PlayerStats>().AddExperience(experienceAmount);
+            GameManager.Instance.AddMoney(moneyAmount);
         }
 
         public string GetDescription()
         {
-            return $"{moneyAmount}원";
+            return moneyAmount.ToString("N0");
         }
     }
 }

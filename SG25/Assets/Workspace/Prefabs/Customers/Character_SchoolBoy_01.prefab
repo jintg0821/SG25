@@ -2787,7 +2787,7 @@ GameObject:
   - component: {fileID: 3950568440808502613}
   m_Layer: 0
   m_Name: Character_SchoolBoy_01
-  m_TagString: Untagged
+  m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2858,6 +2858,7 @@ MonoBehaviour:
   isMoveDone: 0
   target: {fileID: 0}
   counter: {fileID: 0}
+  counterPivot: {fileID: 0}
   customerHand: {fileID: 7993794374115195843}
   exitPoints:
   - {fileID: 0}

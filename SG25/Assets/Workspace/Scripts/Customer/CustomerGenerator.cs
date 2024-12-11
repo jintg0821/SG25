@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CustomerGenerator : MonoBehaviour
@@ -8,6 +9,9 @@ public class CustomerGenerator : MonoBehaviour
     public float spawnRateMin = 5f;
     public float spawnRateMax = 10f;
     public GameObject[] spawnPoints;
+    public GameObject[] allCustomers;
+    
+
 
     private float spawnRate;
     private float spawntime = 0f;
@@ -16,6 +20,7 @@ public class CustomerGenerator : MonoBehaviour
     {
         spawnRate = Random.Range(spawnRateMin, spawnRateMax);
         spawnPoints = GameObject.FindGameObjectsWithTag("CustomerPoint");
+
     }
     void Update()
     {
@@ -28,6 +33,15 @@ public class CustomerGenerator : MonoBehaviour
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform;
             Instantiate(customer, spawnPoint);
             spawnRate = Random.Range(spawnRateMin, spawnRateMax);
+        }
+
+        if (GameManager.Instance.hours >= 22)
+        {
+            allCustomers = GameObject.FindGameObjectsWithTag("Customer");
+            foreach (GameObject customer in allCustomers)
+            {
+                Destroy(customer);
+            }    
         }
     }
 }

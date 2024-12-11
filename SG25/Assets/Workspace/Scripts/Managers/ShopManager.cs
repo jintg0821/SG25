@@ -64,7 +64,7 @@ public class ShopManager : Singleton<ShopManager>
     // ???????? ?? UI ????????
     public void UpdatePlayerMoneyUI()
     {
-        PlayerMoneyText.text = GameManager.Instance.playerMoney.ToString(); // ?????????? ???? ???????? ????
+        PlayerMoneyText.text = GameManager.Instance.playerMoney.ToString("N0"); // ?????????? ???? ???????? ????
     }
 
     public void Generateproduct()
@@ -94,12 +94,10 @@ public class ShopManager : Singleton<ShopManager>
             if (productObj != null && products[index] != null)
             {
                 productName.text = products[index].name;               
-                price.text = products[index].buyCost.ToString();
+                price.text = products[index].buyCost.ToString("N0");
                 image.sprite = products[index].image;
             }
         }
-
-
     }
 
     public void CartBtnClick(TMP_InputField count, ProductData product)
@@ -128,24 +126,24 @@ public class ShopManager : Singleton<ShopManager>
     public void UpdateCartTotal()
     {
         int totalProductPrice = CalculateTotalPrice(); // ???????? ?? ???? ????
-        currentCartMoney.text = totalProductPrice.ToString(); // UI?? ???? ????
-        totalProductPriceText.text = totalProductPrice.ToString();
+        currentCartMoney.text = totalProductPrice.ToString("N0"); // UI?? ???? ????
+        totalProductPriceText.text = totalProductPrice.ToString("N0");
 
         int totalPrice = totalProductPrice + deliveryFee;
-        totalPriceText.text = totalPrice.ToString();
+        totalPriceText.text = totalPrice.ToString("N0");
 
         int remainingMoney = GameManager.Instance.playerMoney - totalPrice;
-        remainingMoneyText.text = remainingMoney.ToString();
+        remainingMoneyText.text = remainingMoney.ToString("N0");
 
         int totalCount = cartItems.Count;
-        currentCartCount.text = totalCount.ToString();
+        currentCartCount.text = totalCount.ToString("N0");
     }
 
     public void OnCartPanelButtonClick() //???????? ?????? ???????? ?? ????
     {
         CartPanel.SetActive(true); //Activ?? true?? ???????? ????. false?? ?????????? ????.
         GenerateCartProduct();
-        deliveryFeeText.text = deliveryFee.ToString();
+        deliveryFeeText.text = deliveryFee.ToString("N0");
     }
 
     public void CartPanelClose()
@@ -181,7 +179,7 @@ public class ShopManager : Singleton<ShopManager>
             // ???? ?????? ???? ????
             productName.text = cartItem.product.name;
             productQuantity.text = $"x{cartItem.quantity}";
-            productPrice.text = cartItem.product.buyCost.ToString();
+            productPrice.text = cartItem.product.buyCost.ToString("N0");
 
             if (cartItem.quantity == 0 || cartItem == null)
             {
@@ -198,7 +196,7 @@ public class ShopManager : Singleton<ShopManager>
         // ?????????? ???? ?? ???????? ?????? ???? ?? ???? ????
         if (GameManager.Instance.playerMoney >= (totalPrice + deliveryFee))
         {
-            UIManager.Instance.DecreaseMoneyText(totalPrice + deliveryFee); // ÇÃ·¹ÀÌ¾î µ·¿¡¼­ ÃÑ °¡°Ý Â÷°¨
+            GameManager.Instance.SpendMoney(totalPrice + deliveryFee); // ÇÃ·¹ÀÌ¾î µ·¿¡¼­ ÃÑ °¡°Ý Â÷°¨
             UpdatePlayerMoneyUI();     // UI ¾÷µ¥ÀÌÆ®
 
             Debug.Log($"Items purchased for {totalPrice}. Remaining money: {GameManager.Instance.playerMoney}");
@@ -230,7 +228,7 @@ public class ShopManager : Singleton<ShopManager>
     {
         int plus = int.Parse(count.text);
         plus++;
-        count.text = plus.ToString();
+        count.text = plus.ToString("N0");
         Debug.Log(count.text);
 
     }
@@ -239,7 +237,7 @@ public class ShopManager : Singleton<ShopManager>
     {
         int minus = int.Parse(count.text);
         minus--;
-        count.text = minus.ToString();
+        count.text = minus.ToString("N0");
         Debug.Log(count.text);
     }
 

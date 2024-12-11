@@ -266,7 +266,8 @@ public class CustomerController : MonoBehaviour
                     {
                         animator.SetInteger("CustomerState", 2); // Picking 애니메이션 실행
 
-                        yield return WaitForAnimationToFinish("Picking"); // 애니메이션 이름
+                        //yield return WaitForAnimationToFinish("Picking"); // 애니메이션 이름
+                        yield return new WaitForSeconds(1f);
 
                         shelf.PopItem(product, productType);
                         product.transform.SetParent(customerHand);
@@ -354,6 +355,7 @@ public class CustomerController : MonoBehaviour
         if (!isCounterOccupied && pickProductList.Count > 0)
         {
             target = counterPivot;
+            animator.SetInteger("CustomerState", 1);
             MoveToTarget();
             ChangeState(CustomerState.WalkingToCounter, waitTime);
         }
@@ -364,7 +366,6 @@ public class CustomerController : MonoBehaviour
         if (timer.IsFinished() && isMoveDone)
         {
             ChangeState(CustomerState.PlacingProduct, waitTime);
-            animator.SetInteger("CustomerState", 1);
         }
     }
 
@@ -387,17 +388,22 @@ public class CustomerController : MonoBehaviour
             animator.SetInteger("CustomerState", 3);
             yield return WaitForAnimationToFinish("Placing");
 
-            GameObject product = pickProductList[pickProductList.Count - 1];
-            product.SetActive(true);
-            product.GetComponent<BoxCollider>().enabled = true;
-            product.transform.position = new Vector3(counter.position.x, counter.position.y + 2f, counter.position.z);
-            product.transform.rotation = Quaternion.Euler(product.transform.rotation.eulerAngles.x, product.transform.rotation.eulerAngles.y, 90f);
-            product.transform.parent = counter;
-            product.SetActive(true);
-            product.tag = "CounterProduct";
-            checkoutSystem.counterProductList.Add(product);
-            pickProductList.Remove(product);
+            if (pickProductList.Count > 0) // 리스트가 비어 있는지 확인
+            {
+                GameObject product = pickProductList[pickProductList.Count - 1];
+                pickProductList.Remove(product);
 
+                product.SetActive(true);
+                product.GetComponent<BoxCollider>().enabled = true;
+                product.transform.parent = counter;
+                //product.transform.position = new Vector3(counter.position.x, counter.position.y + 2f, counter.position.z);
+                product.transform.localPosition = new Vector3(0f, 0.01f, 0f);
+                product.transform.rotation = Quaternion.Euler(product.transform.rotation.eulerAngles.x, product.transform.rotation.eulerAngles.y, 90f);
+                
+                product.SetActive(true);
+                product.tag = "CounterProduct";
+                checkoutSystem.counterProductList.Add(product);
+            }
         }
         ChangeState(CustomerState.GivingMoney, waitTime);
     }
@@ -418,7 +424,8 @@ public class CustomerController : MonoBehaviour
                 {
                     GameObject moneyObj = Instantiate(money.moneyModel, customerHand.transform.position, Quaternion.identity);
                     moneyObj.transform.SetParent(customerHand);
-                    moneyObj.transform.localPosition = Vector3.zero;
+                    moneyObj.transform.localPosition = new Vector3(0.085f, -0.03f, -0.085f);
+                    moneyObj.transform.localRotation = Quaternion.Euler(0f, 0f, 90f);
                     checkoutSystem.takeMoneys.Add(money.value);
                 }
             }
