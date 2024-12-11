@@ -14,6 +14,7 @@ public class ProductBoxGenerator : MonoBehaviour
         info.ProductName = product.name;
         info.ProductType = (int)product.productType;
         productBoxInfoList.Add(info);
+        info.ProductID = product.ID;
     }
 
     public void GetOrder(List<ProductBoxScriptObject> infoList, ProductData product)
@@ -36,6 +37,7 @@ public class ProductBoxGenerator : MonoBehaviour
             info.ProductName = item.ProductName;
             info.ProductType = item.ProductType;
             info.ProductCount = info.ProductPosList.Count;
+            info.ProductID = item.ProductID;
 
             for (int i = 0; i < info.ProductPosList.Count; i++)
             {
@@ -43,7 +45,7 @@ public class ProductBoxGenerator : MonoBehaviour
                 var productBox = output.GetComponent<ProductBox>();
                 productBox.ProductList.Add(productObj);
                 productObj.transform.localPosition = Vector3.zero;
-                productObj.transform.localScale = new Vector3(5, 5, 5);
+                productObj.transform.localScale = Vector3.one;
                 productObj.GetComponent<BoxCollider>().enabled = false;
             }
         }

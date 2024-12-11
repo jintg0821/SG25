@@ -11,7 +11,7 @@ public class ProductBox : MonoBehaviour
         return this.GetComponent<ProductBoxInfo>();
     }
 
-    public GameObject RemoveProduct(GameObject productObj) // 박스 안에 있는 상품들을 지우는 함수
+    public GameObject RemoveProduct(GameObject productObj) // ???? ???? ???? ???????? ?????? ????
     {
         var info = gameObject.GetComponent<ProductBoxInfo>();
 
@@ -19,16 +19,15 @@ public class ProductBox : MonoBehaviour
         {
             ProductList.Remove(productObj);
             --info.ProductCount; 
-            Debug.Log($"남은 물건 갯수 : {info.ProductCount}");
         }
         else
         {
-            Debug.Log("박스가 비었어여");
+            Debug.Log("?????? ????????");
         }
         return null;
     }
 
-    public GameObject InsertProduct(GameObject productObj) // 상품을 박스에 넣는 함수
+    public GameObject InsertProduct(GameObject productObj) // ?????? ?????? ???? ????
     {
         var info = gameObject.GetComponent<ProductBoxInfo>();
         var newProduct = productObj.GetComponent<Product>();
@@ -40,11 +39,12 @@ public class ProductBox : MonoBehaviour
                 ++info.ProductCount;
                 productObj.transform.SetParent(info.ProductPosList[ProductList.Count - 1].transform);
                 productObj.transform.localPosition = Vector3.zero;
-                productObj.transform.localScale = new Vector3(5f, 5f, 5f);
+                productObj.transform.localScale = Vector3.one;
+                productObj.transform.localRotation = Quaternion.identity;
             }
             else
             {
-                Debug.Log("박스 꽉참");
+                Debug.Log("???? ????");
             }
         }
         return null;

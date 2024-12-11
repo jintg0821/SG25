@@ -25,7 +25,7 @@ public abstract class Shelf : MonoBehaviour
         }
     }
 
-    public void PushItem(GameObject product, int productType)
+    public bool PushItem(GameObject product, int productType)
     {
         if (GetShelfType() == productType)
         {
@@ -55,6 +55,7 @@ public abstract class Shelf : MonoBehaviour
                             product.transform.localScale = Vector3.one;
                             product.transform.localRotation = Quaternion.identity;
                             ProductList.Add(product);
+                            return true;
                         }
                     }
                     else
@@ -65,22 +66,25 @@ public abstract class Shelf : MonoBehaviour
                         product.transform.localScale = Vector3.one;
                         product.transform.localRotation = Quaternion.identity;
                         ProductList.Add(product);
+                        return true;
                     }
                     QuestManager questManager = FindObjectOfType<QuestManager>();
                     if (questManager != null)
                     {
                         questManager.OnItemClicked(newProduct.product.ID);
-                    }
 
-                    QuestManager.Instance.ItemShelfStock(productObj.product.ID);
-                    QuestManager.Instance.ItemTypeShelfStock((int)productObj.product.productType);
-                    
+                        QuestManager.Instance.ItemShelfStock(newProduct.product.ID);
+                        QuestManager.Instance.ItemTypeShelfStock((int)newProduct.product.productType);
+                    }
                 }
                 else
                 {
                     Debug.Log("full");
+                    return false;
                 }
             }
+            return false;
         }
+        return false;
     }
 }

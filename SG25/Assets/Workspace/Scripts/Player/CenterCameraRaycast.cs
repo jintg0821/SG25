@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class CenterCameraRaycast : MonoBehaviour
 {
@@ -80,7 +79,7 @@ public class CenterCameraRaycast : MonoBehaviour
                         productBox.transform.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                         productBox.transform.SetParent(playerHand.transform);
                         productBox.transform.localPosition = Vector3.zero;
-                        productBox.transform.localRotation = Quaternion.identity;
+                        productBox.transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
                     }
                     //if (p != null)
                     //{
@@ -119,9 +118,10 @@ public class CenterCameraRaycast : MonoBehaviour
                                             Debug.Log("?????? ???? " + productBox.ProductList.Count);
 
                                             if (productBox.ProductList.Count > 0)
-                                            {
-                                                snackShelf.PushItem(productBox.ProductList[0], boxInfo.ProductType);
-                                                productBox.ProductList.Remove(productBox.ProductList[0]);
+                                            {   
+                                                bool success = snackShelf.PushItem(productBox.ProductList[productBox.ProductList.Count - 1], boxInfo.ProductType);
+                                                if (success)
+                                                    productBox.ProductList.Remove(productBox.ProductList[productBox.ProductList.Count - 1]);
                                             }
                                         }
                                     }
@@ -137,8 +137,25 @@ public class CenterCameraRaycast : MonoBehaviour
                                     {
                                         if (productBox.ProductList.Count > 0)
                                         {
-                                            drinkShelf.PushItem(productBox.ProductList[0], boxInfo.ProductType);
-                                            productBox.ProductList.Remove(productBox.ProductList[0]);
+                                            bool success = drinkShelf.PushItem(productBox.ProductList[0], boxInfo.ProductType);
+                                            if (success)
+                                                productBox.ProductList.Remove(productBox.ProductList[0]);
+                                        }
+                                    }
+                                }
+                                break;
+                            case IcecreamShelf:
+                                var icecreamShelf = shelf as IcecreamShelf;
+                                if (productBox != null)
+                                {
+                                    var boxInfo = productBox.GetBoxInfo();
+                                    if (boxInfo.ProductType == icecreamShelf.GetShelfType())
+                                    {
+                                        if (productBox.ProductList.Count > 0)
+                                        {
+                                            bool success = icecreamShelf.PushItem(productBox.ProductList[0], boxInfo.ProductType);
+                                            if (success)
+                                                productBox.ProductList.Remove(productBox.ProductList[0]);
                                         }
                                     }
                                 }
@@ -158,22 +175,23 @@ public class CenterCameraRaycast : MonoBehaviour
                         questManager.OnItemClicked(item.product.ID);
                     }   
                 }
-            }
-            if (hit.collider.CompareTag("CounterProduct"))
-            {
-                GameObject counterProductObj = hit.collider.gameObject;
-                checkoutSystem.SelectedProduct(counterProductObj);
+                if (hit.collider.CompareTag("CounterProduct"))
+                {
+                    GameObject counterProductObj = hit.collider.gameObject;
+                    checkoutSystem.SelectedProduct(counterProductObj);
+                }
+
+                if (hit.collider.CompareTag("Money"))
+                {
+                    Money moneyObj = hit.collider.GetComponent<Money>();
+                    //checkoutSystem.takeMoneys.Add(moneyObj.money.value);
+                    //checkoutSystem.takeMoney += moneyObj.money.value;
+                    //checkoutSystem.takeMoneys.Remove(moneyObj.money.value);
+                    checkoutSystem.Calculate(moneyObj);
+                    Destroy(moneyObj.gameObject);
+                }
             }
             
-            if (hit.collider.CompareTag("Money"))
-            {
-                Money moneyObj = hit.collider.GetComponent<Money>();
-                //checkoutSystem.takeMoneys.Add(moneyObj.money.value);  
-                //checkoutSystem.takeMoney += moneyObj.money.value;
-                //checkoutSystem.takeMoneys.Remove(moneyObj.money.value);
-                checkoutSystem.Calculate(moneyObj);
-                Destroy(moneyObj.gameObject);
-            }
             if (Input.GetMouseButtonDown(1))                                        //???????? ???? ??
             {
                 if (hit.collider.CompareTag("Shelf"))                               //ray?? ???? ?????????? "Shelf" ?????? ?????? ??????
@@ -188,6 +206,64 @@ public class CenterCameraRaycast : MonoBehaviour
                     //    uiManager.OnProductBoxInfo(boxInfo.ProductName, boxInfo.ProductCount);
 
                     //}
+                    var shelf = hit.collider.gameObject.GetComponent<Shelf>();
+                    if (shelf != null)
+                    {
+                        switch (shelf)
+                        {
+                            case SnackShelf:
+                                {
+                                    var snackShelf = shelf as SnackShelf;
+                                    if (productBox != null)
+                                    {
+                                        var boxInfo = productBox.GetBoxInfo();
+                                        GameObject productObj = snackShelf.ProductList[snackShelf.ProductList.Count - 1];
+                                        if (boxInfo.ProductType == snackShelf.GetShelfType() && productObj.GetComponent<Product>().product.ID == boxInfo.ProductID)
+                                        {
+                                            productBox.InsertProduct(productObj);
+                                            snackShelf.PopItem(productObj, boxInfo.ProductType);
+                                        }
+                                    }
+
+                                }
+                                break;
+                            case DrinkShelf:
+                                var drinkShelf = shelf as DrinkShelf;
+                                if (productBox != null)
+                                {
+                                    var boxInfo = productBox.GetBoxInfo();
+                                    if (boxInfo.ProductType == drinkShelf.GetShelfType())
+                                    {
+                                        if (productBox.ProductList.Count > 0)
+                                        {
+                                            bool success = drinkShelf.PushItem(productBox.ProductList[0], boxInfo.ProductType);
+                                            if (success)
+                                                productBox.ProductList.Remove(productBox.ProductList[0]);
+                                        }
+                                    }
+                                }
+                                break;
+                            case IcecreamShelf:
+                                var icecreamShelf = shelf as IcecreamShelf;
+                                if (productBox != null)
+                                {
+                                    var boxInfo = productBox.GetBoxInfo();
+                                    if (boxInfo.ProductType == icecreamShelf.GetShelfType())
+                                    {
+                                        if (productBox.ProductList.Count > 0)
+                                        {
+                                            bool success = icecreamShelf.PushItem(productBox.ProductList[0], boxInfo.ProductType);
+                                            if (success)
+                                                productBox.ProductList.Remove(productBox.ProductList[0]);
+                                        }
+                                    }
+                                }
+                                break;
+                            default:
+                                Debug.Log("Unknown shelf type");
+                                break;
+                        }
+                    }
                 }
             }
         }

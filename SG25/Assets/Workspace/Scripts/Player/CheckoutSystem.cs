@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CheckoutSystem : MonoBehaviour
 {
-    public List<GameObject> counterProduct = new List<GameObject>();
+    public List<GameObject> counterProductList = new List<GameObject>();
     public List<int> takeMoneys = new List<int>();
 
     public int totalPrice = 0;
@@ -16,12 +16,12 @@ public class CheckoutSystem : MonoBehaviour
 
     public void SelectedProduct(GameObject productObj)
     {
-        productObj = counterProduct[counterProduct.Count - 1];
+        productObj = counterProductList[counterProductList.Count - 1];
         Product product = productObj.GetComponent<Product>();
-        counterProduct.Remove(productObj);
-        //totalPrice += product.product.sellCost;
+        counterProductList.Remove(productObj);
+        totalPrice += product.product.sellCost;
         Destroy(productObj);
-        Debug.Log(totalPrice);
+        Debug.Log($"{product.name} : {product.product.sellCost}");
     }
 
     public void Calculate(Money moneyObj)
@@ -33,6 +33,9 @@ public class CheckoutSystem : MonoBehaviour
         {
             UIManager.IncreaseMoneyText(takeMoney);
             isSell = true;
+            totalPrice = 0;
+            changeMoney = 0;
+            takeMoney = 0;
             QuestManager.Instance.Calculate();
         }
     }

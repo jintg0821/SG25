@@ -7,4 +7,5 @@ public class ProductBoxScriptObject
     public string ProductName;
     public int ProductCount;
     public int ProductType;
+    public int ProductID;
 }

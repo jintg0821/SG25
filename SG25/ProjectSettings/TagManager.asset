@@ -11,6 +11,8 @@ TagManager:
   - Door
   - PlacementArea
   - Product
+  - CustomerPoint
+  - CounterLine
   layers:
   - Default
   - TransparentFX
