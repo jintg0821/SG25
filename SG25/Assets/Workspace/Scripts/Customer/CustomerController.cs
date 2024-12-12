@@ -193,6 +193,7 @@ public class CustomerController : MonoBehaviour
         if (targetPosList != null)
         {
             animator.SetInteger("CustomerState", 1);
+            animator.CrossFade("Walking", 0f);
             agent.SetDestination(target.position);
         }
     }
@@ -206,16 +207,21 @@ public class CustomerController : MonoBehaviour
                 target = targetPosList[Random.Range(0, targetPosList.Count)];
                 MoveToTarget();
                 animator.SetInteger("CustomerState", 1);
+                animator.CrossFade("Walking", 0f);
                 ChangeState(CustomerState.WalkingToShelf, waitTime);
             }
             else
             {
                 if (pickProductList.Count > 0)
                 {
+                    animator.SetInteger("CustomerState", 1);
+                    animator.CrossFade("Walking", 0f);
                     ChangeState(CustomerState.WaitCounter, waitTime);
                 }
                 else
                 {
+                    animator.SetInteger("CustomerState", 1);
+                    animator.CrossFade("Walking", 0f);
                     ChangeState(CustomerState.LeavingStore, waitTime);
                 }
             }
@@ -265,9 +271,10 @@ public class CustomerController : MonoBehaviour
                     if (product != null)
                     {
                         animator.SetInteger("CustomerState", 2); // Picking 애니메이션 실행
+                        animator.CrossFade("Picking", 0f);
 
-                        //yield return WaitForAnimationToFinish("Picking"); // 애니메이션 이름
-                        yield return new WaitForSeconds(1f);
+                        yield return WaitForAnimationToFinish("Picking"); // 애니메이션 이름
+                        //yield return new WaitForSeconds(1f);
 
                         shelf.PopItem(product, productType);
                         product.transform.SetParent(customerHand);
@@ -286,14 +293,17 @@ public class CustomerController : MonoBehaviour
 
         isPicking = false; // Picking 완료
         animator.SetInteger("CustomerState", 1);
+        animator.CrossFade("Walking", 0f);
         if (pickProductList.Count > 0)
         {
             animator.SetInteger("CustomerState", 1); // Walking 애니메이션으로 변경
+            animator.CrossFade("Walking", 0f);
             ChangeState(CustomerState.WaitCounter);
         }
         else
         {
             animator.SetInteger("CustomerState", 1); // Walking 애니메이션으로 변경
+            animator.CrossFade("Walking", 0f);
             ChangeState(CustomerState.LeavingStore);
         }
     }
@@ -348,6 +358,7 @@ public class CustomerController : MonoBehaviour
                 if (isMoveDone)
                 {
                     animator.SetInteger("CustomerState", 0);
+                    animator.CrossFade("Idle", 0);
                 }
             }
         }
@@ -356,10 +367,12 @@ public class CustomerController : MonoBehaviour
         {
             target = counterPivot;
             animator.SetInteger("CustomerState", 1);
+            animator.CrossFade("Walking", 0);
             MoveToTarget();
             ChangeState(CustomerState.WalkingToCounter, waitTime);
         }
     }
+
 
     void WalkingToCounter()
     {
@@ -386,9 +399,10 @@ public class CustomerController : MonoBehaviour
         while (pickProductList.Count > 0)
         {
             animator.SetInteger("CustomerState", 3);
+            animator.CrossFade("Placing", 0f);
             yield return WaitForAnimationToFinish("Placing");
 
-            if (pickProductList.Count > 0) // 리스트가 비어 있는지 확인
+            if (pickProductList.Count > 0)
             {
                 GameObject product = pickProductList[pickProductList.Count - 1];
                 pickProductList.Remove(product);
@@ -397,7 +411,7 @@ public class CustomerController : MonoBehaviour
                 product.GetComponent<BoxCollider>().enabled = true;
                 product.transform.parent = counter;
                 //product.transform.position = new Vector3(counter.position.x, counter.position.y + 2f, counter.position.z);
-                product.transform.localPosition = new Vector3(0f, 0.01f, 0f);
+                product.transform.localPosition = new Vector3(0f, 0.02f, 0f);
                 product.transform.rotation = Quaternion.Euler(product.transform.rotation.eulerAngles.x, product.transform.rotation.eulerAngles.y, 90f);
                 
                 product.SetActive(true);
@@ -453,6 +467,7 @@ public class CustomerController : MonoBehaviour
     IEnumerator GiveMoneyCoroutine()
     {
         animator.SetInteger("CustomerState", 4);
+        animator.CrossFade("GiveMoney", 0f);
 
         yield return WaitForAnimationToFinish("GiveMoney");
     }
@@ -468,9 +483,9 @@ public class CustomerController : MonoBehaviour
             {
                 checkoutSystem.isSell = false;
                 animator.SetInteger("CustomerState", 1);
+                animator.CrossFade("Walking", 0f);
                 ChangeState(CustomerState.LeavingStore, waitTime);
             }
-
         }
     }
 
@@ -478,6 +493,7 @@ public class CustomerController : MonoBehaviour
     {
         target = exitPoint;
         animator.SetInteger("CustomerState", 1);
+        animator.CrossFade("Walking", 0f);
         MoveToTarget();
 
         if (!isMoveDone && agent.remainingDistance <= agent.stoppingDistance && agent.velocity.sqrMagnitude == 0f)
