@@ -6,6 +6,7 @@ public abstract class Shelf : MonoBehaviour
 {
     public List<Transform> ProductPoseList = new List<Transform>();
     public List<GameObject> ProductList = new List<GameObject>();
+    public int Price;
      
     public abstract int GetShelfType();
 

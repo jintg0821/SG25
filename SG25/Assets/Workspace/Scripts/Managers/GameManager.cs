@@ -13,7 +13,7 @@ public class GameManager : Singleton<GameManager>
 
     [Header("Time")] 
     public float gameTime = 0.0f; // 게임 세계의 시간을 초로 저장
-    public float timeScale = 60.0f; // 현실 시간 1초당 게임 시간 60초 (1분)
+    public float timeScale = 360.0f; // 현실 시간 1초당 게임 시간 60초 (1분) 360 => 4분
     public int hours = 6; // % 24를 제거하여 24 이상 값도 계산 가능
     public int minutes = 0;
     public int days = 1;
@@ -31,7 +31,7 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
-        hours = (int)(gameTime / 3600);
+        hours = (int)(gameTime / 3600) % 24;
         minutes = (int)(gameTime / 60) % 60;
         // 현실 세계의 경과 시간에 비례하여 게임 시간 증가
         gameTime += Time.deltaTime * timeScale;
@@ -46,7 +46,8 @@ public class GameManager : Singleton<GameManager>
         dailyEarnings += amount;
         totalEarnings += amount;
 
-        UIManager.Instance.IncreaseMoneyText(playerMoney);
+        UIManager UIManager = FindObjectOfType<UIManager>();
+        UIManager.IncreaseMoneyText(playerMoney);
     }
 
     public void SpendMoney(int amount)
@@ -58,7 +59,8 @@ public class GameManager : Singleton<GameManager>
             dailyExpenses += amount;
             totalExpenses += amount;
 
-            UIManager.Instance.DecreaseMoneyText(playerMoney);
+            UIManager UIManager = FindObjectOfType<UIManager>();
+            UIManager.DecreaseMoneyText(playerMoney);
         }
         else
         {
@@ -68,11 +70,11 @@ public class GameManager : Singleton<GameManager>
 
     void UpdateSkybox()
     {
-        if (hours >= 6 && hours < 18) // 낮
+        if (hours >= 6 && hours < 16) // 낮
         {
             SetSkybox(daySkybox);
         }
-        else if (hours >= 18 && hours < 21) // 저녁
+        else if (hours >= 16 && hours < 20) // 저녁
         {
             SetSkybox(eveningSkybox);
         }

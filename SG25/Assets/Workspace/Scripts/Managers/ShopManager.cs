@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ShopManager : Singleton<ShopManager>
+public class ShopManager : MonoBehaviour
 {
     [Header("????????")]
     public GameObject productPrefab;//?????? ?????? ????
@@ -208,7 +208,8 @@ public class ShopManager : Singleton<ShopManager>
                     OnProductButtonClick(cartItem.product);
                 }
             }
-
+            currentCartCount.text = "0";
+            currentCartMoney.text = "0";
             ClearCart(); // ???????? ??????
         }
         else

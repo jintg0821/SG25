@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIManager : Singleton<UIManager>
+public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI moneyText;
     private CenterCameraRaycast playerCtrl;
     public GameObject shopPanel;
+    public GameObject shelfPanel;
     public GameObject cartPanel;
+    public GameObject menuPanel;
     public bool isPanelOn;
 
     public TextMeshProUGUI timeText;
@@ -53,11 +55,11 @@ public class UIManager : Singleton<UIManager>
     {
         moneyText.text = GameManager.Instance.playerMoney.ToString("N0");
     }
-
-    public void ToggleShopPanel()
+ 
+    public void TogglePanel(GameObject panel)
     {
-        shopPanel.SetActive(!shopPanel.activeSelf);
-        playerCtrl.SetCursorState(shopPanel.activeSelf);
+        panel.SetActive(!panel.activeSelf);
+        playerCtrl.SetCursorState(panel.activeSelf);
     } 
     
     public void ClosePanel()
@@ -100,6 +102,5 @@ public class UIManager : Singleton<UIManager>
             
             Debug.Log("영업이 종료 되었습니다.");
         }
-        
     }
 }

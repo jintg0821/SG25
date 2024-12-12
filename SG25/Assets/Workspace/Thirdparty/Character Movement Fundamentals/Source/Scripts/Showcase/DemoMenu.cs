@@ -100,7 +100,7 @@ namespace CMF
 		//Reload scene;
 		public void RestartScene()
 		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
 		}
 
 		//Quit game;

@@ -14,10 +14,15 @@ public class CenterCameraRaycast : MonoBehaviour
     public CheckoutSystem checkoutSystem;
     public UIManager uiManager;
 
+    private AudioSource audioSource;
+    public AudioClip barcodeClip;
+    public AudioClip moneyClip;
+
     void Start()
     {
         checkoutSystem = FindObjectOfType<CheckoutSystem>();
         uiManager = FindObjectOfType<UIManager>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -176,6 +181,7 @@ public class CenterCameraRaycast : MonoBehaviour
                 {
                     QuestManager questManager = FindObjectOfType<QuestManager>();
                     Product item = hit.collider.GetComponent<Product>();
+                    
                     if (questManager != null)
                     {
                         questManager.OnItemClicked(item.product.ID);
@@ -185,6 +191,8 @@ public class CenterCameraRaycast : MonoBehaviour
                 {
                     GameObject counterProductObj = hit.collider.gameObject;
                     checkoutSystem.SelectedProduct(counterProductObj);
+                    audioSource.clip = barcodeClip;
+                    audioSource.Play();
                 }
 
                 if (hit.collider.CompareTag("Money"))
@@ -194,6 +202,8 @@ public class CenterCameraRaycast : MonoBehaviour
                     //checkoutSystem.takeMoney += moneyObj.money.value;
                     //checkoutSystem.takeMoneys.Remove(moneyObj.money.value);
                     checkoutSystem.Calculate(moneyObj);
+                    audioSource.clip = moneyClip;
+                    audioSource.Play();
                     Destroy(moneyObj.gameObject);
                 }
             }
@@ -269,7 +279,11 @@ public class CenterCameraRaycast : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            uiManager.ToggleShopPanel();
+            uiManager.TogglePanel(uiManager.shopPanel);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            uiManager.TogglePanel(uiManager.menuPanel);
         }
     }
 }

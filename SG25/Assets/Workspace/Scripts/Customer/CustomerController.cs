@@ -66,6 +66,18 @@ public class CustomerController : MonoBehaviour
     public List<GameObject> shelfList = new List<GameObject>();
     public Dictionary<ProductData, int> targetProduct = new Dictionary<ProductData, int>();
 
+    public AudioSource AudioSource;
+    public AudioClip[] footStepClips;
+    public AudioClip giveMoneyClip;
+
+    public float footstepDistance = 0.2f;
+    float currentFootstepDistance = 0f;
+
+    [Range(0f, 1f)]
+    public float audioClipVolume = 0.1f;
+
+    public float relativeRandomizedVolumeRange = 0.2f;
+
     private static int nextPriority = 0;
     private static readonly object priorityLock = new object();
 
@@ -99,13 +111,25 @@ public class CustomerController : MonoBehaviour
     {
         timer.Update(Time.deltaTime);
 
-        if (!agent.hasPath && agent.remainingDistance <= agent.remainingDistance)
+        if (!agent.hasPath && agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
             {
                 isMoveDone = true;
             }
+            if (AudioSource != null && AudioSource.isPlaying)
+            {
+                AudioSource.Stop();
+            }
         }
+        else
+        {
+            if (AudioSource != null && !AudioSource.isPlaying)
+            {
+                FootStepUpdate(agent.velocity.magnitude);
+            }
+        }
+
 
         switch (currentState)
         {
@@ -195,6 +219,11 @@ public class CustomerController : MonoBehaviour
             animator.SetInteger("CustomerState", 1);
             animator.CrossFade("Walking", 0f);
             agent.SetDestination(target.position);
+
+            if (!AudioSource.isPlaying)
+            {
+                AudioSource.Play();
+            }
         }
     }
 
@@ -460,6 +489,7 @@ public class CustomerController : MonoBehaviour
                 sum += checkoutSystem.takeMoneys[i];
                 Debug.Log(sum);
             }
+            AudioSource.PlayOneShot(giveMoneyClip, audioClipVolume);
             ChangeState(CustomerState.WaitingCalcPrice, waitTime);
         }
     }
@@ -532,6 +562,32 @@ public class CustomerController : MonoBehaviour
                animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
         {
             yield return null; // 다음 프레임까지 대기
+        }
+    }
+
+    void FootStepUpdate(float _movementSpeed)
+    {
+        float _speedThreshold = 0.05f;
+
+        currentFootstepDistance += Time.deltaTime * _movementSpeed;
+
+        //Play foot step audio clip if a certain distance has been traveled;
+        if (currentFootstepDistance > footstepDistance)
+        {
+            //Only play footstep sound if movement speed is above the threshold;
+            if (_movementSpeed > _speedThreshold)
+                PlayFootstepSound(_movementSpeed);
+            currentFootstepDistance = 0f;
+        }
+    }
+
+    void PlayFootstepSound(float _movementSpeed)
+    {
+        if (footStepClips.Length > 0)
+        {
+            int _footStepClipIndex = Random.Range(0, footStepClips.Length);
+            float volume = audioClipVolume + audioClipVolume * Random.Range(-relativeRandomizedVolumeRange, relativeRandomizedVolumeRange);
+            AudioSource.PlayOneShot(footStepClips[_footStepClipIndex], volume);
         }
     }
 }
