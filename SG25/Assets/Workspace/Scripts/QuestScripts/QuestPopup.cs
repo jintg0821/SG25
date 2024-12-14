@@ -11,22 +11,17 @@ public class QuestPopup : MonoBehaviour
     [SerializeField] private Button closeButton;            // 팝업 닫기 버튼
     [SerializeField] private GameObject questPrefab;            // 팝업 닫기 버튼
     [SerializeField] private Transform questContent;            // 팝업 닫기 버튼
-    private QuestManager questManager;
     private CenterCameraRaycast playerCtrl;                 // 플레이어 컨트롤러 (커서 제어)
     private bool isPopupVisible = false;                    // 팝업 상태 추적
 
     private void Awake()
     {
-        popupPanel.SetActive(false); // 초기 상태에서 팝업 비활성화
         playerCtrl = FindObjectOfType<CenterCameraRaycast>();
-        questManager = GetComponent<QuestManager>();
-
-        questManager = QuestManager.Instance;
 
         closeButton.onClick.AddListener(HidePopup);
         // 이벤트 등록
-        questManager.OnQuestStarted += UpdateQuestUI;
-        questManager.OnQuestCompleted += UpdateQuestUI;
+        QuestManager.Instance.OnQuestStarted += UpdateQuestUI;
+        QuestManager.Instance.OnQuestCompleted += UpdateQuestUI;
 
         // 초기 퀘스트 생성 표시
         RefreshQuestList();
@@ -57,7 +52,6 @@ public class QuestPopup : MonoBehaviour
         popupPanel.SetActive(true);
         isPopupVisible = true;
         playerCtrl.SetCursorState(isPopupVisible);
-        questIcon.gameObject.SetActive(false);
         RefreshQuestList();
     }
 
@@ -109,21 +103,32 @@ public class QuestPopup : MonoBehaviour
         RefreshQuestList();
     }
 
-    private void RefreshQuestList()                                     // 퀘스트 목록 새로고침
+    private void RefreshQuestList()
     {
-        foreach (Transform child in questContent)                    // 기존 UI 제거
+        if (questContent == null)
         {
-            Destroy(child.gameObject);
+            Debug.LogError("questContent is null or destroyed.");
+            return;
         }
 
-        foreach (var quest in questManager.GetAvailableQuests())            // 활성 퀘스트 표시
+        // 기존 UI 제거 (안전하게 null 체크)
+        foreach (Transform child in questContent)
+        {
+            if (child != null)  // 삭제된 객체 방지
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        // 활성 퀘스트 표시
+        foreach (var quest in QuestManager.Instance.GetAvailableQuests())
         {
             CreateQuestUI(quest);
         }
     }
+
     public void HidePopup()
     {
-        
         popupPanel.SetActive(false);
         isPopupVisible = false;
         playerCtrl.SetCursorState(isPopupVisible);
