@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: NewQuestData - Copy
   m_EditorClassIdentifier: 
   questId: 0
-  questTitle: "\uACC4\uC0B0 2\uD68C \uC644\uB8CC\uD558\uAE30"
-  questDescription: "\uACC4\uC0B0\uC744 2\uD68C \uC644\uB8CC\uD574\uBCF4\uC138\uC694"
+  questTitle: "\uACC4\uC0B0 5\uD68C \uC644\uB8CC\uD558\uAE30"
+  questDescription: "\uACC4\uC0B0\uC744 5\uD68C \uC644\uB8CC\uD574\uBCF4\uC138\uC694"
   questType: 2
   productType: 3
   targetItemId: 99
   targetItemType: 99
-  requiredAmount: 10
+  requiredAmount: 5
   rewardAmount: 50
